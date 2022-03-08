@@ -162,6 +162,7 @@ package com.brockw.stickwar.engine
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
                               ++main.loadingFraction;
                               this.lastButton = null;
                               this.main = main;
@@ -573,7 +574,7 @@ package com.brockw.stickwar.engine
                                                             this.UCunit.ai.setCommand(this.gameScreen.game,new StandCommand(this.gameScreen.game));
                                                             this.UCunit.ai.mayMoveToAttack = true;
                                                   }
-                                                  if(this.keyBoardState.isDown(39))
+                                                  if(this.keyBoardState.isDown(39) || this.keyBoardState.isDown(68))
                                                   {
                                                             this.goingRight = true;
                                                             this.UCmoveX = 400 * this.UCunit.scale;
@@ -582,7 +583,7 @@ package com.brockw.stickwar.engine
                                                   {
                                                             this.goingRight = false;
                                                   }
-                                                  if(this.keyBoardState.isDown(37))
+                                                  if(this.keyBoardState.isDown(37) || this.keyBoardState.isDown(65))
                                                   {
                                                             this.goingLeft = true;
                                                             this.UCmoveX = -400 * this.UCunit.scale;
@@ -591,7 +592,7 @@ package com.brockw.stickwar.engine
                                                   {
                                                             this.goingLeft = false;
                                                   }
-                                                  if(this.keyBoardState.isDown(38))
+                                                  if(this.keyBoardState.isDown(38) || this.keyBoardState.isDown(87))
                                                   {
                                                             this.goingUp = true;
                                                             this.UCmoveY = -200 * this.UCunit.scale;
@@ -600,7 +601,7 @@ package com.brockw.stickwar.engine
                                                   {
                                                             this.goingUp = false;
                                                   }
-                                                  if(this.keyBoardState.isDown(40))
+                                                  if(this.keyBoardState.isDown(40) || this.keyBoardState.isDown(83))
                                                   {
                                                             this.goingDown = true;
                                                             this.UCmoveY = 200 * this.UCunit.scale;
@@ -888,7 +889,7 @@ package com.brockw.stickwar.engine
                               {
                                         this.team.detectedUserInput(this);
                               }
-                              if(!this.keyBoardState.isPressed(71))
+                              if(this.keyBoardState.isPressed(71))
                               {
                               }
                               if(this.mouseState.mouseIn && this.stage.mouseY < this.gameScreen.game.battlefield.y + 240)
