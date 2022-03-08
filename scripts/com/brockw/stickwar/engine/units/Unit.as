@@ -290,6 +290,10 @@ package com.brockw.stickwar.engine.units
                     
                     public var isUC:Boolean = false;
                     
+                    public var damageUC:int;
+                    
+                    public var speedUC:int;
+                    
                     public function Unit(game:StickWar)
                     {
                               this.hasDefaultLoadout = false;
@@ -804,6 +808,14 @@ package com.brockw.stickwar.engine.units
                               if(this._health + this.chaosHealRate <= this.maxHealth && this.team.type == Team.T_CHAOS)
                               {
                                         this._health += this.chaosHealRate;
+                              }
+                              if(this._health + this.chaosHealRate * 1.5 <= this.maxHealth && this.isUC)
+                              {
+                                        this._health += this.chaosHealRate * 1.5;
+                                        if(2 > Math.floor(Math.random() * 100) + 1)
+                                        {
+                                                  this.heal(0,1);
+                                        }
                               }
                               if(this.slowFramesRemaining)
                               {
