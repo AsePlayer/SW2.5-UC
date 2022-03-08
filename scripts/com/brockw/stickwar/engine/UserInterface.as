@@ -163,6 +163,10 @@ package com.brockw.stickwar.engine
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
                               ++main.loadingFraction;
                               this.lastButton = null;
                               this.main = main;
@@ -538,13 +542,22 @@ package com.brockw.stickwar.engine
                               {
                                         --this.attackTimer;
                               }
-                              if(this.selectedUnits.selected[0])
+                              if(this.keyBoardState.isDown(9))
                               {
-                                        if(this.keyBoardState.isDown(9))
+                                        if(this.UCunit == this.selectedUnits.selected[0] && this.leaveUCTimer <= 0)
                                         {
-                                                  if(this.UCunit == this.selectedUnits.selected[0] && this.leaveUCTimer <= 0)
+                                                  this.leaveUCTimer = 30;
+                                                  this.UCunit.isUC = false;
+                                                  this.UCunit = null;
+                                                  if(this.gameScreen.contains(this.arrow))
                                                   {
-                                                            this.leaveUCTimer = 30;
+                                                            this.gameScreen.removeChild(this.arrow);
+                                                  }
+                                        }
+                                        else if(this.leaveUCTimer <= 0)
+                                        {
+                                                  if(this.UCunit)
+                                                  {
                                                             this.UCunit.isUC = false;
                                                             this.UCunit = null;
                                                             if(this.gameScreen.contains(this.arrow))
@@ -552,100 +565,97 @@ package com.brockw.stickwar.engine
                                                                       this.gameScreen.removeChild(this.arrow);
                                                             }
                                                   }
-                                                  else if(this.leaveUCTimer <= 0)
-                                                  {
-                                                            this.leaveUCTimer = 30;
-                                                            this.UCunit = this.selectedUnits.selected[0];
-                                                            this.gameScreen.userInterface.helpMessage.showMessage("Controlling " + this.UCunit);
-                                                            this.arrow = new tutorialArrow();
-                                                            this.gameScreen.addChild(this.arrow);
-                                                            trace("BRUH");
-                                                  }
-                                        }
-                                        if(this.UCunit)
-                                        {
-                                                  this.arrow.x = this.UCunit.x + this.gameScreen.game.battlefield.x;
-                                                  this.arrow.y = this.UCunit.y - this.UCunit.pheight * 0.8 + this.gameScreen.game.battlefield.y;
-                                                  this.gameScreen.game.targetScreenX = this.UCunit.px - this.gameScreen.game.map.screenWidth / 2;
-                                                  this.UCunit.isUC = true;
-                                                  if(this.keyBoardState.isDown(32))
-                                                  {
-                                                            this.attacking = true;
-                                                            this.UCunit.ai.setCommand(this.gameScreen.game,new StandCommand(this.gameScreen.game));
-                                                            this.UCunit.ai.mayMoveToAttack = true;
-                                                  }
-                                                  if(this.keyBoardState.isDown(39) || this.keyBoardState.isDown(68))
-                                                  {
-                                                            this.goingRight = true;
-                                                            this.UCmoveX = 400 * this.UCunit.scale;
-                                                  }
-                                                  else
-                                                  {
-                                                            this.goingRight = false;
-                                                  }
-                                                  if(this.keyBoardState.isDown(37) || this.keyBoardState.isDown(65))
-                                                  {
-                                                            this.goingLeft = true;
-                                                            this.UCmoveX = -400 * this.UCunit.scale;
-                                                  }
-                                                  else
-                                                  {
-                                                            this.goingLeft = false;
-                                                  }
-                                                  if(this.keyBoardState.isDown(38) || this.keyBoardState.isDown(87))
-                                                  {
-                                                            this.goingUp = true;
-                                                            this.UCmoveY = -200 * this.UCunit.scale;
-                                                  }
-                                                  else
-                                                  {
-                                                            this.goingUp = false;
-                                                  }
-                                                  if(this.keyBoardState.isDown(40) || this.keyBoardState.isDown(83))
-                                                  {
-                                                            this.goingDown = true;
-                                                            this.UCmoveY = 200 * this.UCunit.scale;
-                                                            if(!this.goingRight && !this.goingLeft)
-                                                            {
-                                                                      this.goingRight = true;
-                                                                      this.UCmoveX = this.UCmoveY / 10 + 5;
-                                                            }
-                                                  }
-                                                  else
-                                                  {
-                                                            this.goingDown = false;
-                                                  }
-                                                  if(!this.goingLeft && !this.goingRight)
-                                                  {
-                                                            this.UCmoveX = 0;
-                                                  }
-                                                  if(!this.goingUp && !this.goingDown)
-                                                  {
-                                                            this.UCmoveY = 0;
-                                                  }
-                                                  trace("X: " + this.UCmoveX + ", Y: " + this.UCmoveY);
-                                                  if(!this.attacking)
-                                                  {
-                                                            if(this.UCmoveX == 0 && this.UCmoveY == 0)
-                                                            {
-                                                                      this.UCunit.ai.setCommand(this.gameScreen.game,new StandCommand(this.gameScreen.game));
-                                                                      this.UCunit.ai.mayMoveToAttack = false;
-                                                            }
-                                                            else
-                                                            {
-                                                                      _loc20_ = new UnitMove();
-                                                                      _loc20_.owner = this.gameScreen.game.team.id;
-                                                                      _loc20_.moveType = UnitCommand.MOVE;
-                                                                      _loc20_.arg0 = this.UCunit.px + this.UCmoveX;
-                                                                      _loc20_.arg1 = this.UCunit.py + this.UCmoveY;
-                                                                      _loc20_.units.push(this.UCunit.id);
-                                                                      _loc20_.execute(this.gameScreen.game);
-                                                            }
-                                                  }
-                                                  this.attacking = false;
+                                                  this.leaveUCTimer = 30;
+                                                  this.UCunit = this.selectedUnits.selected[0];
+                                                  this.gameScreen.userInterface.helpMessage.showMessage("Controlling " + this.UCunit);
+                                                  this.arrow = new tutorialArrow();
+                                                  this.gameScreen.addChild(this.arrow);
+                                                  trace("BRUH");
                                         }
                               }
-                              if(this.UCunit && this.UCunit != this.selectedUnits.selected[0] || this.UCunit && this.UCunit.isDead)
+                              if(this.UCunit)
+                              {
+                                        this.arrow.x = this.UCunit.x + this.gameScreen.game.battlefield.x;
+                                        this.arrow.y = this.UCunit.y - this.UCunit.pheight * 0.8 + this.gameScreen.game.battlefield.y;
+                                        this.gameScreen.game.targetScreenX = this.UCunit.px - this.gameScreen.game.map.screenWidth / 2;
+                                        this.UCunit.isUC = true;
+                                        if(this.keyBoardState.isDown(32))
+                                        {
+                                                  this.attacking = true;
+                                                  this.UCunit.ai.setCommand(this.gameScreen.game,new StandCommand(this.gameScreen.game));
+                                                  this.UCunit.ai.mayMoveToAttack = true;
+                                        }
+                                        if(this.keyBoardState.isDown(39) || this.keyBoardState.isDown(68))
+                                        {
+                                                  this.goingRight = true;
+                                                  this.UCmoveX = 400 * this.UCunit.scale;
+                                        }
+                                        else
+                                        {
+                                                  this.goingRight = false;
+                                        }
+                                        if(this.keyBoardState.isDown(37) || this.keyBoardState.isDown(65))
+                                        {
+                                                  this.goingLeft = true;
+                                                  this.UCmoveX = -400 * this.UCunit.scale;
+                                        }
+                                        else
+                                        {
+                                                  this.goingLeft = false;
+                                        }
+                                        if(this.keyBoardState.isDown(38) || this.keyBoardState.isDown(87))
+                                        {
+                                                  this.goingUp = true;
+                                                  this.UCmoveY = -200 * this.UCunit.scale;
+                                        }
+                                        else
+                                        {
+                                                  this.goingUp = false;
+                                        }
+                                        if(this.keyBoardState.isDown(40) || this.keyBoardState.isDown(83))
+                                        {
+                                                  this.goingDown = true;
+                                                  this.UCmoveY = 200 * this.UCunit.scale;
+                                                  if(!this.goingRight && !this.goingLeft)
+                                                  {
+                                                            this.goingRight = true;
+                                                            this.UCmoveX = this.UCmoveY / 10 + 5;
+                                                  }
+                                        }
+                                        else
+                                        {
+                                                  this.goingDown = false;
+                                        }
+                                        if(!this.goingLeft && !this.goingRight)
+                                        {
+                                                  this.UCmoveX = 0;
+                                        }
+                                        if(!this.goingUp && !this.goingDown)
+                                        {
+                                                  this.UCmoveY = 0;
+                                        }
+                                        trace("X: " + this.UCmoveX + ", Y: " + this.UCmoveY);
+                                        if(!this.attacking)
+                                        {
+                                                  if(this.UCmoveX == 0 && this.UCmoveY == 0)
+                                                  {
+                                                            this.UCunit.ai.setCommand(this.gameScreen.game,new StandCommand(this.gameScreen.game));
+                                                            this.UCunit.ai.mayMoveToAttack = false;
+                                                  }
+                                                  else
+                                                  {
+                                                            _loc20_ = new UnitMove();
+                                                            _loc20_.owner = this.gameScreen.game.team.id;
+                                                            _loc20_.moveType = UnitCommand.MOVE;
+                                                            _loc20_.arg0 = this.UCunit.px + this.UCmoveX;
+                                                            _loc20_.arg1 = this.UCunit.py + this.UCmoveY;
+                                                            _loc20_.units.push(this.UCunit.id);
+                                                            _loc20_.execute(this.gameScreen.game);
+                                                  }
+                                        }
+                                        this.attacking = false;
+                              }
+                              if(this.UCunit && this.UCunit.isDead)
                               {
                                         this.UCunit.isUC = false;
                                         this.UCunit = null;
