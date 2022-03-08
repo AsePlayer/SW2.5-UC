@@ -249,8 +249,8 @@ package com.brockw.stickwar.campaign.controllers
                                         _loc5_.py = _loc3_.map.height / 3 * 2;
                                         _loc4_.ai.setCommand(_loc3_,new StandCommand(_loc3_));
                                         _loc5_.ai.setCommand(_loc3_,new StandCommand(_loc3_));
-                                        param1.team.population += 1;
-                                        param1.team.population += 1;
+                                        ++param1.team.population;
+                                        ++param1.team.population;
                                         delete _loc3_.team.unitsAvailable[Unit.U_SWORDWRATH];
                                         delete _loc3_.team.unitsAvailable[Unit.U_MINER];
                                         this.s1 = _loc4_;
@@ -298,7 +298,7 @@ package com.brockw.stickwar.campaign.controllers
                                                   this.s1.selected = true;
                                                   this.s2.selected = true;
                                         }
-                                        this.message.setMessage("Right click here to move your selected units.","Step #2",0,"voiceTutorial2");
+                                        this.message.setMessage("Press TAB to user control a selected unit. Move both units here.","Step #2",0,"voiceTutorial2");
                                         param1.game.screenX = 2200;
                                         param1.game.targetScreenX = 2200;
                                         this.arrow.visible = true;
@@ -345,8 +345,7 @@ package com.brockw.stickwar.campaign.controllers
                                         {
                                                   _loc6_.health = _loc6_.maxHealth;
                                         }
-                                        param1.game.targetScreenX = 2800;
-                                        this.message.setMessage("Right click on this enemy unit to attack.","Step #4",0,"voiceTutorial4",true);
+                                        this.message.setMessage("Press SPACE near an enemy unit to attack with user control.","Step #4",0,"voiceTutorial4",true);
                                         this.arrow.visible = true;
                                         this.arrow.x = this.o1.x + param1.game.battlefield.x;
                                         this.arrow.y = this.o1.y - this.o1.pheight * 0.8 + param1.game.battlefield.y;
@@ -640,14 +639,22 @@ package com.brockw.stickwar.campaign.controllers
                               }
                               else if(this.state == S_MOVE_UNITS)
                               {
-                                        if(this.message.hasFinishedPlayingSound() && this.s1.px < 2500 && this.s2.px < 2500)
+                                        if(this.message.hasFinishedPlayingSound() && (this.s1.isUC && this.s1.px < 2500 && this.s2.px < 2500 || this.s2.isUC && this.s1.px < 2500 && this.s2.px < 2500))
                                         {
                                                   this.state = S_MOVE_SCREEN;
+                                                  _loc7_ = new UnitMove();
+                                                  _loc7_.owner = param1.game.team.id;
+                                                  _loc7_.moveType = UnitCommand.HOLD;
+                                                  _loc7_.arg0 = param1.game.team.homeX + -1000;
+                                                  _loc7_.arg1 = param1.game.map.height / 2;
+                                                  _loc7_.units.push(this.s1.id);
+                                                  _loc7_.units.push(this.s2.id);
+                                                  _loc7_.execute(param1.game);
                                                   this.o1 = Swordwrath(param1.game.unitFactory.getUnit(Unit.U_SWORDWRATH));
                                                   param1.team.enemyTeam.spawn(this.o1,param1.game);
                                                   this.o1.x = this.o1.px = 3350;
                                                   this.o1.y = this.o1.py = param1.game.map.height / 2;
-                                                  param1.team.enemyTeam.population += 1;
+                                                  ++param1.team.enemyTeam.population;
                                         }
                               }
                               else if(this.state == S_MOVE_SCREEN)

@@ -474,6 +474,7 @@ package com.brockw.stickwar.engine.Ai
                     
                     public function getClosestUnitTarget() : Unit
                     {
+                              var i:int = 0;
                               var rIndex:* = undefined;
                               var u:Unit = null;
                               var d:Number = NaN;
@@ -481,7 +482,7 @@ package com.brockw.stickwar.engine.Ai
                               {
                                         return this.unit.team.enemyTeam.statue;
                               }
-                              var minDistance:Number = Number.POSITIVE_INFINITY;
+                              var minDistance:* = Number.POSITIVE_INFINITY;
                               if(this.currentTarget != null && (!this.currentTarget.isAlive() || !Unit(this.currentTarget).isTargetable()))
                               {
                                         minDistance = Number.POSITIVE_INFINITY;
@@ -496,7 +497,8 @@ package com.brockw.stickwar.engine.Ai
                                         return this.currentTarget;
                               }
                               this.isTargeted = false;
-                              for(var i:int = 0; i < 3; i++)
+                              i = 0;
+                              while(i < 3)
                               {
                                         rIndex = this.unit.team.game.random.nextInt() % this.unit.team.enemyTeam.units.length;
                                         u = this.unit.team.enemyTeam.units[rIndex];
@@ -509,6 +511,7 @@ package com.brockw.stickwar.engine.Ai
                                                             this.currentTarget = this.unit.team.enemyTeam.units[rIndex];
                                                   }
                                         }
+                                        i++;
                               }
                               if(this.currentTarget == null)
                               {

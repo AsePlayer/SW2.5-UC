@@ -6,6 +6,8 @@ package com.brockw.stickwar.engine
           import com.brockw.game.Util;
           import com.brockw.stickwar.BaseMain;
           import com.brockw.stickwar.GameScreen;
+          import com.brockw.stickwar.engine.Ai.command.StandCommand;
+          import com.brockw.stickwar.engine.Ai.command.UnitCommand;
           import com.brockw.stickwar.engine.Team.Building;
           import com.brockw.stickwar.engine.Team.Chaos.ChaosHud;
           import com.brockw.stickwar.engine.Team.Hud;
@@ -16,6 +18,7 @@ package com.brockw.stickwar.engine
           import com.brockw.stickwar.engine.multiplayer.moves.GlobalMove;
           import com.brockw.stickwar.engine.multiplayer.moves.PauseMove;
           import com.brockw.stickwar.engine.multiplayer.moves.ScreenPositionUpdateMove;
+          import com.brockw.stickwar.engine.multiplayer.moves.UnitMove;
           import com.brockw.stickwar.engine.units.Statue;
           import com.brockw.stickwar.engine.units.Unit;
           import com.brockw.stickwar.engine.units.Wall;
@@ -99,8 +102,66 @@ package com.brockw.stickwar.engine
                     
                     private var lastButton:SimpleButton;
                     
+                    var UCunit:Unit;
+                    
+                    var UCmoveX:int;
+                    
+                    var UCmoveY:int;
+                    
+                    var goingLeft:Boolean;
+                    
+                    var goingRight:Boolean;
+                    
+                    var goingUp:Boolean;
+                    
+                    var goingDown:Boolean;
+                    
+                    var attacking:Boolean;
+                    
+                    private var arrow:tutorialArrow;
+                    
+                    var leaveUCTimer:int;
+                    
+                    var attackTimer:int;
+                    
                     public function UserInterface(main:BaseMain, gameScreen:GameScreen)
                     {
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
                               ++main.loadingFraction;
                               this.lastButton = null;
                               this.main = main;
@@ -456,6 +517,142 @@ package com.brockw.stickwar.engine
                               var _loc17_:* = null;
                               var _loc18_:int = 0;
                               var _loc19_:int = 0;
+                              var _loc20_:UnitMove = null;
+                              if(this.arrow != null)
+                              {
+                                        if(this.arrow.currentFrame == this.arrow.totalFrames)
+                                        {
+                                                  this.arrow.gotoAndPlay(1);
+                                        }
+                                        else
+                                        {
+                                                  this.arrow.nextFrame();
+                                        }
+                              }
+                              if(this.leaveUCTimer > 0)
+                              {
+                                        --this.leaveUCTimer;
+                              }
+                              if(this.attackTimer > 0)
+                              {
+                                        --this.attackTimer;
+                              }
+                              if(this.selectedUnits.selected[0])
+                              {
+                                        if(this.keyBoardState.isDown(9))
+                                        {
+                                                  if(this.UCunit == this.selectedUnits.selected[0] && this.leaveUCTimer <= 0)
+                                                  {
+                                                            this.leaveUCTimer = 30;
+                                                            this.UCunit.isUC = false;
+                                                            this.UCunit = null;
+                                                            if(this.gameScreen.contains(this.arrow))
+                                                            {
+                                                                      this.gameScreen.removeChild(this.arrow);
+                                                            }
+                                                  }
+                                                  else if(this.leaveUCTimer <= 0)
+                                                  {
+                                                            this.leaveUCTimer = 30;
+                                                            this.UCunit = this.selectedUnits.selected[0];
+                                                            this.gameScreen.userInterface.helpMessage.showMessage("Controlling " + this.UCunit);
+                                                            this.arrow = new tutorialArrow();
+                                                            this.gameScreen.addChild(this.arrow);
+                                                            trace("BRUH");
+                                                  }
+                                        }
+                                        if(this.UCunit)
+                                        {
+                                                  this.arrow.x = this.UCunit.x + this.gameScreen.game.battlefield.x;
+                                                  this.arrow.y = this.UCunit.y - this.UCunit.pheight * 0.8 + this.gameScreen.game.battlefield.y;
+                                                  this.gameScreen.game.targetScreenX = this.UCunit.px - this.gameScreen.game.map.screenWidth / 2;
+                                                  this.UCunit.isUC = true;
+                                                  if(this.keyBoardState.isDown(32))
+                                                  {
+                                                            this.attacking = true;
+                                                            this.UCunit.ai.setCommand(this.gameScreen.game,new StandCommand(this.gameScreen.game));
+                                                            this.UCunit.ai.mayMoveToAttack = true;
+                                                  }
+                                                  if(this.keyBoardState.isDown(39))
+                                                  {
+                                                            this.goingRight = true;
+                                                            this.UCmoveX = 400 * this.UCunit.scale;
+                                                  }
+                                                  else
+                                                  {
+                                                            this.goingRight = false;
+                                                  }
+                                                  if(this.keyBoardState.isDown(37))
+                                                  {
+                                                            this.goingLeft = true;
+                                                            this.UCmoveX = -400 * this.UCunit.scale;
+                                                  }
+                                                  else
+                                                  {
+                                                            this.goingLeft = false;
+                                                  }
+                                                  if(this.keyBoardState.isDown(38))
+                                                  {
+                                                            this.goingUp = true;
+                                                            this.UCmoveY = -200 * this.UCunit.scale;
+                                                  }
+                                                  else
+                                                  {
+                                                            this.goingUp = false;
+                                                  }
+                                                  if(this.keyBoardState.isDown(40))
+                                                  {
+                                                            this.goingDown = true;
+                                                            this.UCmoveY = 200 * this.UCunit.scale;
+                                                            if(!this.goingRight && !this.goingLeft)
+                                                            {
+                                                                      this.goingRight = true;
+                                                                      this.UCmoveX = this.UCmoveY / 10 + 5;
+                                                            }
+                                                  }
+                                                  else
+                                                  {
+                                                            this.goingDown = false;
+                                                  }
+                                                  if(!this.goingLeft && !this.goingRight)
+                                                  {
+                                                            this.UCmoveX = 0;
+                                                  }
+                                                  if(!this.goingUp && !this.goingDown)
+                                                  {
+                                                            this.UCmoveY = 0;
+                                                  }
+                                                  trace("X: " + this.UCmoveX + ", Y: " + this.UCmoveY);
+                                                  if(!this.attacking)
+                                                  {
+                                                            if(this.UCmoveX == 0 && this.UCmoveY == 0)
+                                                            {
+                                                                      this.UCunit.ai.setCommand(this.gameScreen.game,new StandCommand(this.gameScreen.game));
+                                                                      this.UCunit.ai.mayMoveToAttack = false;
+                                                            }
+                                                            else
+                                                            {
+                                                                      _loc20_ = new UnitMove();
+                                                                      _loc20_.owner = this.gameScreen.game.team.id;
+                                                                      _loc20_.moveType = UnitCommand.MOVE;
+                                                                      _loc20_.arg0 = this.UCunit.px + this.UCmoveX;
+                                                                      _loc20_.arg1 = this.UCunit.py + this.UCmoveY;
+                                                                      _loc20_.units.push(this.UCunit.id);
+                                                                      _loc20_.execute(this.gameScreen.game);
+                                                            }
+                                                  }
+                                                  this.attacking = false;
+                                        }
+                              }
+                              if(this.UCunit && this.UCunit != this.selectedUnits.selected[0] || this.UCunit && this.UCunit.isDead)
+                              {
+                                        this.UCunit.isUC = false;
+                                        this.UCunit = null;
+                                        if(this.gameScreen.contains(this.arrow))
+                                        {
+                                                  this.gameScreen.removeChild(this.arrow);
+                                        }
+                              }
                               if(!(this.gameScreen is MultiplayerGameScreen))
                               {
                                         if(this.hud.hud.fastForward)
@@ -608,7 +805,7 @@ package com.brockw.stickwar.engine
                               {
                                         this.selectedUnits.nextSelectedUnitType();
                               }
-                              if(this.keyBoardState.isPressed(32))
+                              if(this.keyBoardState.isPressed(32) && !this.UCunit)
                               {
                                         this.selectedUnits.clear();
                                         for each(_loc5_ in this.team.units)
@@ -626,12 +823,12 @@ package com.brockw.stickwar.engine
                                         }
                                         this.spacePressTimer = getTimer();
                               }
-                              if(this.keyBoardState.isDown(39))
+                              if(this.keyBoardState.isDown(39) && !this.UCunit)
                               {
                                         this.gameScreen.game.targetScreenX += this.SCROLL_SPEED * 1;
                                         this.isSlowCamera = false;
                               }
-                              if(this.keyBoardState.isDown(37))
+                              if(this.keyBoardState.isDown(37) && !this.UCunit)
                               {
                                         this.gameScreen.game.targetScreenX -= this.SCROLL_SPEED * 1;
                                         this.isSlowCamera = false;

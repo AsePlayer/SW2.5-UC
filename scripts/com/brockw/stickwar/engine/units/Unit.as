@@ -286,6 +286,10 @@ package com.brockw.stickwar.engine.units
                     
                     private var lastWalkFrame:int;
                     
+                    private var UCglow:GlowFilter;
+                    
+                    public var isUC:Boolean = false;
+                    
                     public function Unit(game:StickWar)
                     {
                               this.hasDefaultLoadout = false;
@@ -319,6 +323,7 @@ package com.brockw.stickwar.engine.units
                               var glowInner:Boolean = false;
                               var glowKnockout:Boolean = false;
                               this.towerSpawnGlow = new GlowFilter(glowColor,glowAlpha,glowBlurX,glowBlurY,glowStrength,glowQuality,glowInner,glowKnockout);
+                              this.UCglow = new GlowFilter(16777215,glowAlpha,glowBlurX,glowBlurY,glowStrength,glowQuality,glowInner,glowKnockout);
                               this.attackStartFrame = 0;
                               this.framesInAttack = 0;
                               this.arrowDeath = false;
@@ -794,7 +799,7 @@ package com.brockw.stickwar.engine.units
                                         {
                                                   this.health = this.maxHealth;
                                         }
-                                        this._healTimeRemaining -= 1;
+                                        --this._healTimeRemaining;
                               }
                               if(this._health + this.chaosHealRate <= this.maxHealth && this.team.type == Team.T_CHAOS)
                               {
@@ -802,7 +807,7 @@ package com.brockw.stickwar.engine.units
                               }
                               if(this.slowFramesRemaining)
                               {
-                                        this.slowFramesRemaining -= 1;
+                                        --this.slowFramesRemaining;
                               }
                               ++this._timeOfDeath;
                               this.healthBar.health = this.health;
@@ -865,6 +870,10 @@ package com.brockw.stickwar.engine.units
                                         {
                                                   game.projectileManager.initSpawnDrip(px,py,this.team);
                                         }
+                              }
+                              else if(this.isUC)
+                              {
+                                        this.mc.mc.filters = [this.UCglow];
                               }
                               else
                               {
@@ -995,7 +1004,7 @@ package com.brockw.stickwar.engine.units
                               ++this._lastTurnCount;
                               if(this._stunTimeLeft > 0)
                               {
-                                        this._stunTimeLeft -= 1;
+                                        --this._stunTimeLeft;
                               }
                               if(this.isDualing == true)
                               {
