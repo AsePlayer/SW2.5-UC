@@ -114,7 +114,7 @@ package com.brockw.stickwar.engine
                     
                     var goingUp:Boolean;
                     
-                    var goingDown:Boolean;
+                    public var goingDown:Boolean;
                     
                     var attacking:Boolean;
                     
@@ -126,6 +126,9 @@ package com.brockw.stickwar.engine
                     
                     public function UserInterface(main:BaseMain, gameScreen:GameScreen)
                     {
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
@@ -554,6 +557,8 @@ package com.brockw.stickwar.engine
                                         {
                                                   this.leaveUCTimer = 30;
                                                   this.UCunit.isUC = false;
+                                                  this.UCunit.ai.mayMoveToAttack = true;
+                                                  this.UCunit.ai.mayAttack = true;
                                                   this.UCunit = null;
                                                   if(this.gameScreen.contains(this.arrow))
                                                   {
@@ -590,6 +595,7 @@ package com.brockw.stickwar.engine
                                                   this.attacking = true;
                                                   this.UCunit.ai.setCommand(this.gameScreen.game,new StandCommand(this.gameScreen.game));
                                                   this.UCunit.ai.mayMoveToAttack = true;
+                                                  this.UCunit.ai.mayAttack = true;
                                         }
                                         if(this.keyBoardState.isDown(39) || this.keyBoardState.isDown(68))
                                         {
@@ -647,6 +653,7 @@ package com.brockw.stickwar.engine
                                                   {
                                                             this.UCunit.ai.setCommand(this.gameScreen.game,new StandCommand(this.gameScreen.game));
                                                             this.UCunit.ai.mayMoveToAttack = false;
+                                                            this.UCunit.ai.mayAttack = false;
                                                   }
                                                   else
                                                   {
@@ -905,7 +912,7 @@ package com.brockw.stickwar.engine
                               {
                                         this.team.detectedUserInput(this);
                               }
-                              if(this.keyBoardState.isPressed(71))
+                              if(!this.keyBoardState.isPressed(71))
                               {
                               }
                               if(this.mouseState.mouseIn && this.stage.mouseY < this.gameScreen.game.battlefield.y + 240)

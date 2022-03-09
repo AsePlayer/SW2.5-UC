@@ -83,6 +83,8 @@ package com.brockw.stickwar.engine
                     
                     private var _game:StickWar;
                     
+                    var cantStand:Boolean;
+                    
                     public function ActionInterface(game:UserInterface)
                     {
                               super();
@@ -195,7 +197,8 @@ package com.brockw.stickwar.engine
                               var i:int = 0;
                               if(this.currentEntity != null)
                               {
-                                        for(i = 0; i < this.currentActions.length; i++)
+                                        i = 0;
+                                        while(i < this.currentActions.length)
                                         {
                                                   if(this.currentActions[i] < 0)
                                                   {
@@ -216,6 +219,7 @@ package com.brockw.stickwar.engine
                                                                       MovieClip(this.actionsToButtonMap[this.currentActions[i]]).getChildByName("mc").alpha = 1;
                                                             }
                                                   }
+                                                  i++;
                                         }
                               }
                     }
@@ -225,14 +229,15 @@ package com.brockw.stickwar.engine
                               var _loc2_:int = 0;
                               var _loc3_:MovieClip = null;
                               var _loc4_:Sprite = null;
-                              var _loc5_:Number = NaN;
+                              var _loc5_:* = NaN;
                               var _loc6_:int = 0;
                               var _loc7_:Number = NaN;
                               var _loc8_:int = 0;
                               var _loc9_:TechItem = null;
                               var _loc10_:UnitCommand = null;
                               var _loc11_:UnitCommand = null;
-                              for(_loc2_ = 0; _loc2_ < param1.game.postCursors.length; _loc2_++)
+                              _loc2_ = 0;
+                              while(_loc2_ < param1.game.postCursors.length)
                               {
                                         _loc3_ = param1.game.postCursors[_loc2_];
                                         if(_loc3_.currentFrame != _loc3_.totalFrames)
@@ -248,6 +253,7 @@ package com.brockw.stickwar.engine
                                                   }
                                                   param1.game.postCursors.splice(_loc2_,1);
                                         }
+                                        _loc2_++;
                               }
                               if(param1.userInterface.selectedUnits.hasChanged && this._currentMove != null)
                               {
@@ -255,7 +261,8 @@ package com.brockw.stickwar.engine
                               }
                               if(this.currentEntity != null)
                               {
-                                        for(_loc2_ = 0; _loc2_ < this.currentActions.length; _loc2_++)
+                                        _loc2_ = 0;
+                                        for(; _loc2_ < this.currentActions.length; _loc2_++)
                                         {
                                                   if(this.currentActions[_loc2_] < 0)
                                                   {
@@ -285,13 +292,15 @@ package com.brockw.stickwar.engine
                                                                                 continue;
                                                                       }
                                                                       _loc5_ = UnitCommand(this.actions[this.currentActions[_loc2_]]).coolDownTime(param1.userInterface.selectedUnits.unitTypes[this.currentEntity.type][0]);
-                                                                      for(_loc6_ = 1; _loc6_ < param1.userInterface.selectedUnits.unitTypes[this.currentEntity.type].length; _loc6_++)
+                                                                      _loc6_ = 1;
+                                                                      while(_loc6_ < param1.userInterface.selectedUnits.unitTypes[this.currentEntity.type].length)
                                                                       {
                                                                                 _loc7_ = UnitCommand(this.actions[this.currentActions[_loc2_]]).coolDownTime(param1.userInterface.selectedUnits.unitTypes[this.currentEntity.type][_loc6_]);
                                                                                 if(_loc7_ < _loc5_)
                                                                                 {
                                                                                           _loc5_ = _loc7_;
                                                                                 }
+                                                                                _loc6_++;
                                                                       }
                                                                       this.drawCoolDown(this.actionsToButtonMap[this.currentActions[_loc2_]],_loc5_);
                                                             }
@@ -367,7 +376,8 @@ package com.brockw.stickwar.engine
                               }
                               if(this._currentMove == null || this._currentMove != null && !this.clicked || this._currentMove == UnitCommand(this.actions[UnitCommand.MOVE]) || this.clicked)
                               {
-                                        for(_loc8_ = 0; _loc8_ < this.currentActions.length; _loc8_++)
+                                        _loc8_ = 0;
+                                        while(_loc8_ < this.currentActions.length)
                                         {
                                                   if(this.currentActions[_loc8_] < 0)
                                                   {
@@ -403,40 +413,45 @@ package com.brockw.stickwar.engine
                                                                       {
                                                                                 param1.userInterface.mouseState.clicked = false;
                                                                                 _loc5_ = _loc11_.coolDownTime(param1.userInterface.selectedUnits.unitTypes[this.currentEntity.type][0]);
-                                                                                for(_loc6_ = 1; _loc6_ < param1.userInterface.selectedUnits.unitTypes[this.currentEntity.type].length; _loc6_++)
+                                                                                _loc6_ = 1;
+                                                                                while(_loc6_ < param1.userInterface.selectedUnits.unitTypes[this.currentEntity.type].length)
                                                                                 {
                                                                                           _loc7_ = _loc11_.coolDownTime(param1.userInterface.selectedUnits.unitTypes[this.currentEntity.type][_loc6_]);
                                                                                           if(_loc7_ < _loc5_)
                                                                                           {
                                                                                                     _loc5_ = _loc7_;
                                                                                           }
+                                                                                          _loc6_++;
                                                                                 }
-                                                                                if(_loc11_.getGoldRequired() > this.team.gold)
+                                                                                if(!(_loc11_.hotKey == 83 && param1.game.gameScreen.userInterface.goingDown))
                                                                                 {
-                                                                                          param1.userInterface.helpMessage.showMessage("Not enough gold to cast ");
-                                                                                }
-                                                                                else if(_loc11_.getManaRequired() > this.team.mana)
-                                                                                {
-                                                                                          param1.userInterface.helpMessage.showMessage("Not enough mana to cast ");
-                                                                                }
-                                                                                else if(_loc5_ != 0)
-                                                                                {
-                                                                                          param1.userInterface.helpMessage.showMessage("Ability is on cooldown");
-                                                                                }
-                                                                                else if(!UnitCommand(this.actions[this.currentActions[_loc8_]]).requiresMouseInput)
-                                                                                {
-                                                                                          UnitCommand(this.actions[this.currentActions[_loc8_]]).prepareNetworkedMove(param1);
-                                                                                          if(this.actionsToButtonMap[this.currentActions[_loc8_]] != null)
+                                                                                          if(_loc11_.getGoldRequired() > this.team.gold)
                                                                                           {
-                                                                                                    MovieClip(this.actionsToButtonMap[this.currentActions[_loc8_]]).alpha = 0.2;
+                                                                                                    param1.userInterface.helpMessage.showMessage("Not enough gold to cast ");
                                                                                           }
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                          this.refresh();
-                                                                                          this._currentMove = UnitCommand(this.actions[this.currentActions[_loc8_]]);
-                                                                                          Mouse.hide();
-                                                                                          this.clicked = false;
+                                                                                          else if(_loc11_.getManaRequired() > this.team.mana)
+                                                                                          {
+                                                                                                    param1.userInterface.helpMessage.showMessage("Not enough mana to cast ");
+                                                                                          }
+                                                                                          else if(_loc5_ != 0)
+                                                                                          {
+                                                                                                    param1.userInterface.helpMessage.showMessage("Ability is on cooldown");
+                                                                                          }
+                                                                                          else if(!UnitCommand(this.actions[this.currentActions[_loc8_]]).requiresMouseInput)
+                                                                                          {
+                                                                                                    UnitCommand(this.actions[this.currentActions[_loc8_]]).prepareNetworkedMove(param1);
+                                                                                                    if(this.actionsToButtonMap[this.currentActions[_loc8_]] != null)
+                                                                                                    {
+                                                                                                              MovieClip(this.actionsToButtonMap[this.currentActions[_loc8_]]).alpha = 0.2;
+                                                                                                    }
+                                                                                          }
+                                                                                          else
+                                                                                          {
+                                                                                                    this.refresh();
+                                                                                                    this._currentMove = UnitCommand(this.actions[this.currentActions[_loc8_]]);
+                                                                                                    Mouse.hide();
+                                                                                                    this.clicked = false;
+                                                                                          }
                                                                                 }
                                                                       }
                                                                       else
@@ -445,6 +460,7 @@ package com.brockw.stickwar.engine
                                                                       }
                                                             }
                                                   }
+                                                  _loc8_++;
                                         }
                               }
                               if(this._currentMove != null)
@@ -475,13 +491,16 @@ package com.brockw.stickwar.engine
                     
                     public function clear() : void
                     {
+                              var y:int = 0;
                               var key:* = null;
                               var x:int = 0;
                               var s:Sprite = null;
                               var c:DisplayObject = null;
-                              for(var y:int = 0; y < COLS; y++)
+                              y = 0;
+                              while(y < COLS)
                               {
-                                        for(x = 0; x < ROWS; x++)
+                                        x = 0;
+                                        while(x < ROWS)
                                         {
                                                   s = Sprite(MovieClip(this.boxes[y * COLS + x]).getChildByName("overlay"));
                                                   s.graphics.clear();
@@ -491,7 +510,9 @@ package com.brockw.stickwar.engine
                                                   {
                                                             MovieClip(this.boxes[y * COLS + x]).removeChild(c);
                                                   }
+                                                  x++;
                                         }
+                                        y++;
                               }
                               for(key in this.actionsToButtonMap)
                               {
