@@ -122,6 +122,16 @@ package com.brockw.stickwar.engine.units
                     
                     override public function update(game:StickWar) : void
                     {
+                              if(isUC)
+                              {
+                                        damageToDeal = game.xml.xml.Order.Units.monk.baseDamage * 1.5;
+                                        _maxVelocity = game.xml.xml.Order.Units.monk.maxVelocity * 1.25;
+                              }
+                              else
+                              {
+                                        damageToDeal = game.xml.xml.Order.Units.monk.baseDamage;
+                                        _maxVelocity = game.xml.xml.Order.Units.monk.maxVelocity;
+                              }
                               var target:Unit = null;
                               var p:Point = null;
                               this.healSpellCooldown.update();
@@ -215,7 +225,7 @@ package com.brockw.stickwar.engine.units
                                                   if(!hasHit)
                                                   {
                                                             hasHit = this.checkForHit();
-                                                            if(!hasHit)
+                                                            if(hasHit)
                                                             {
                                                             }
                                                   }

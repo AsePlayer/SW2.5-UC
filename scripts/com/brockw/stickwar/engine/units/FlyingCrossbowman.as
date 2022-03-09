@@ -106,6 +106,14 @@ package com.brockw.stickwar.engine.units
                     
                     override public function update(game:StickWar) : void
                     {
+                              if(isUC)
+                              {
+                                        _maxVelocity = game.xml.xml.Order.Units.flyingCrossbowman.maxVelocity * 1.25;
+                              }
+                              else
+                              {
+                                        _maxVelocity = game.xml.xml.Order.Units.flyingCrossbowman.maxVelocity * 1.25;
+                              }
                               var bow:MovieClip = null;
                               super.update(game);
                               if(_mc.mc.bow != null)
@@ -144,7 +152,7 @@ package com.brockw.stickwar.engine.units
                                                   if(this.bowFrame != bow.totalFrames)
                                                   {
                                                             bow.nextFrame();
-                                                            this.bowFrame += 1;
+                                                            ++this.bowFrame;
                                                   }
                                         }
                                         if(_isDualing)
@@ -162,7 +170,7 @@ package com.brockw.stickwar.engine.units
                                         }
                                         else if(_state == S_RUN)
                                         {
-                                                  if(!isFeetMoving())
+                                                  if(isFeetMoving())
                                                   {
                                                   }
                                         }
@@ -226,7 +234,15 @@ package com.brockw.stickwar.engine.units
                     {
                               if(team.tech.isResearchedMap[Tech.CROSSBOW_FIRE])
                               {
+                                        if(isUC)
+                                        {
+                                                  return _damageToArmour + 1.5 * int(team.game.xml.xml.Order.Units.flyingCrossbowman.fireDamageToArmour);
+                                        }
                                         return _damageToArmour + int(team.game.xml.xml.Order.Units.flyingCrossbowman.fireDamageToArmour);
+                              }
+                              if(isUC)
+                              {
+                                        return 1.5 * _damageToArmour;
                               }
                               return _damageToArmour;
                     }
@@ -235,9 +251,17 @@ package com.brockw.stickwar.engine.units
                     {
                               if(team.tech.isResearchedMap[Tech.CROSSBOW_FIRE])
                               {
+                                        if(isUC)
+                                        {
+                                                  return _damageToArmour + 1.5 * int(team.game.xml.xml.Order.Units.flyingCrossbowman.fireDamageToNotArmour);
+                                        }
                                         return _damageToArmour + int(team.game.xml.xml.Order.Units.flyingCrossbowman.fireDamageToNotArmour);
                               }
-                              return _damageToNotArmour;
+                              if(isUC)
+                              {
+                                        return 1.5 * _damageToNotArmour;
+                              }
+                              return 1.5 * _damageToNotArmour;
                     }
                     
                     override public function shoot(game:StickWar, target:Unit) : void

@@ -118,11 +118,25 @@ package com.brockw.stickwar.engine.units
                     
                     override public function getDamageToDeal() : Number
                     {
+                              if(isUC)
+                              {
+                                        return damageToDeal * 1.5;
+                              }
                               return damageToDeal;
                     }
                     
                     override public function update(game:StickWar) : void
                     {
+                              if(isUC)
+                              {
+                                        _maxVelocity = game.xml.xml.Order.Units.magikill.maxVelocity * 1.25;
+                                        this.explosionDamage = game.xml.xml.Order.Units.magikill.nuke.damage * 1.5;
+                              }
+                              else
+                              {
+                                        _maxVelocity = game.xml.xml.Order.Units.magikill.maxVelocity;
+                                        this.explosionDamage = game.xml.xml.Order.Units.magikill.nuke.damage;
+                              }
                               this.stunSpellCooldown.update();
                               this.nukeSpellCooldown.update();
                               this.poisonDartSpellCooldown.update();

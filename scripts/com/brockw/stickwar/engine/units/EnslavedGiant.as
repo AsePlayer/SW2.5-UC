@@ -86,6 +86,14 @@ package com.brockw.stickwar.engine.units
                     
                     override public function update(param1:StickWar) : void
                     {
+                              if(isUC)
+                              {
+                                        _maxVelocity = 3 * 1.25;
+                              }
+                              else
+                              {
+                                        _maxVelocity = 3;
+                              }
                               var _loc2_:Point = null;
                               var _loc3_:Number = NaN;
                               if(!this.hasGrowled)
@@ -164,6 +172,14 @@ package com.brockw.stickwar.engine.units
                                                             if(inRange(this.target))
                                                             {
                                                                       _loc3_ = angleToTargetW(this.target,projectileVelocity,angleToTarget(this.target));
+                                                            }
+                                                            if(isUC)
+                                                            {
+                                                                      this.damageToDeal = 1.5 * 150;
+                                                            }
+                                                            else
+                                                            {
+                                                                      this.damageToDeal = 150;
                                                             }
                                                             if(mc.scaleX < 0)
                                                             {

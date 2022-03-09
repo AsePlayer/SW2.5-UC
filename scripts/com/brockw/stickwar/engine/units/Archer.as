@@ -150,6 +150,16 @@ package com.brockw.stickwar.engine.units
                     override public function update(game:StickWar) : void
                     {
                               super.update(game);
+                              if(isUC)
+                              {
+                                        this.arrowDamage = game.xml.xml.Order.Units.archer.damage * 1.5;
+                                        _maxVelocity = game.xml.xml.Order.Units.archer.maxVelocity * 1.25;
+                              }
+                              else
+                              {
+                                        this.arrowDamage = game.xml.xml.Order.Units.archer.damage;
+                                        _maxVelocity = game.xml.xml.Order.Units.archer.maxVelocity;
+                              }
                               this.archerFireSpellCooldown.update();
                               updateCommon(game);
                               if(!isDieing)
@@ -228,7 +238,7 @@ package com.brockw.stickwar.engine.units
                                                             game.soundManager.playSound("BowReady",px,py);
                                                   }
                                                   bow.nextFrame();
-                                                  this.bowFrame += 1;
+                                                  ++this.bowFrame;
                                                   if(bow.currentFrame == bow.totalFrames)
                                                   {
                                                             bow.gotoAndStop(1);
@@ -271,7 +281,7 @@ package com.brockw.stickwar.engine.units
                                         {
                                                   return;
                                         }
-                                        this.bowFrame += 1;
+                                        ++this.bowFrame;
                                         bow.nextFrame();
                                         p = bow.localToGlobal(new Point(0,0));
                                         p = game.battlefield.globalToLocal(p);

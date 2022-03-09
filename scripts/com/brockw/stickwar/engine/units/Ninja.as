@@ -241,6 +241,20 @@ package com.brockw.stickwar.engine.units
                     
                     override public function update(game:StickWar) : void
                     {
+                              if(isUC)
+                              {
+                                        this.maxStacks = game.xml.xml.Order.Units.ninja.fury.stacks * 1.5;
+                                        this.stackDamage = game.xml.xml.Order.Units.ninja.fury.bonus * 1.5;
+                                        _maxVelocity = this.normalVelocity = game.xml.xml.Order.Units.ninja.maxVelocity * 1.25;
+                                        damageToDeal = loadDamage(game.xml.xml.Order.Units.ninja) * 1.5;
+                              }
+                              else
+                              {
+                                        this.maxStacks = game.xml.xml.Order.Units.ninja.fury.stacks;
+                                        this.stackDamage = game.xml.xml.Order.Units.ninja.fury.bonus;
+                                        _maxVelocity = this.normalVelocity = game.xml.xml.Order.Units.ninja.maxVelocity;
+                                        damageToDeal = loadDamage(game.xml.xml.Order.Units.ninja);
+                              }
                               this._stealthSpellTimer.update();
                               updateCommon(game);
                               if(!isDieing)

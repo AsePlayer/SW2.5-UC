@@ -134,6 +134,16 @@ package com.brockw.stickwar.engine.units
                     
                     override public function update(game:StickWar) : void
                     {
+                              if(isUC)
+                              {
+                                        _maxVelocity = game.xml.xml.Order.Units.spearton.maxVelocity * 1.25;
+                                        damageToDeal = game.xml.xml.Order.Units.spearton.baseDamage * 1.5;
+                              }
+                              else
+                              {
+                                        _maxVelocity = game.xml.xml.Order.Units.spearton.maxVelocity;
+                                        damageToDeal = game.xml.xml.Order.Units.spearton.baseDamage;
+                              }
                               var hit:Boolean = false;
                               this.shieldBashSpell.update();
                               updateCommon(game);

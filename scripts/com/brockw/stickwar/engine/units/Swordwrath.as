@@ -96,6 +96,8 @@ package com.brockw.stickwar.engine.units
                               MovieClip(_mc.mc.gotoAndPlay(1));
                               MovieClip(_mc.gotoAndStop(1));
                               drawShadow();
+                              damageUC = game.xml.xml.Order.Units.swordwrath.baseDamage * 1.5;
+                              speedUC = game.xml.xml.Order.Units.swordwrath.maxVelocity * 1.5;
                     }
                     
                     override public function setBuilding() : void
@@ -114,6 +116,18 @@ package com.brockw.stickwar.engine.units
                     
                     override public function update(game:StickWar) : void
                     {
+                              if(isUC)
+                              {
+                                        damageToDeal = game.xml.xml.Order.Units.swordwrath.baseDamage * 1.5;
+                                        this.normalMaxVelocity = game.xml.xml.Order.Units.swordwrath.maxVelocity * 1.25;
+                                        this.rageMaxVelocity = game.xml.xml.Order.Units.swordwrath.rage.rageMaxVelocity * 1.25;
+                              }
+                              else
+                              {
+                                        damageToDeal = game.xml.xml.Order.Units.swordwrath.baseDamage;
+                                        this.normalMaxVelocity = game.xml.xml.Order.Units.swordwrath.maxVelocity;
+                                        this.rageMaxVelocity = game.xml.xml.Order.Units.swordwrath.rage.rageMaxVelocity;
+                              }
                               var currentLabel:String = null;
                               this.rageSpell.update();
                               updateCommon(game);
