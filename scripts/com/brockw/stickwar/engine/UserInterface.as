@@ -167,6 +167,12 @@ package com.brockw.stickwar.engine
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
                               ++main.loadingFraction;
                               this.lastButton = null;
                               this.main = main;
@@ -816,7 +822,7 @@ package com.brockw.stickwar.engine
                               {
                                         this.selectedUnits.nextSelectedUnitType();
                               }
-                              if(this.keyBoardState.isPressed(32) && !this.UCunit)
+                              if(!this.UCunit && this.keyBoardState.isPressed(32) || this.keyBoardState.isPressed(32) && this.UCunit && Math.abs(this.UCunit.px - this.UCunit.ai.getClosestUnitTarget().px) > 400)
                               {
                                         this.selectedUnits.clear();
                                         for each(_loc5_ in this.team.units)
