@@ -176,6 +176,23 @@ package com.brockw.stickwar.engine
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
                               ++main.loadingFraction;
                               this.lastButton = null;
                               this.main = main;
@@ -592,9 +609,27 @@ package com.brockw.stickwar.engine
                                         this.UCunit.isUC = true;
                                         if(this.keyBoardState.isDown(32))
                                         {
-                                                  this.attacking = true;
+                                                  if(Math.abs(this.UCunit.px - this.UCunit.ai.getClosestUnitTarget().px) > 600 && this.UCunit.type == Unit.U_ENSLAVED_GIANT)
+                                                  {
+                                                            this.UCunit.ai.mayMoveToAttack = false;
+                                                            this.attacking = false;
+                                                  }
+                                                  else if(Math.abs(this.UCunit.px - this.UCunit.ai.getClosestUnitTarget().px) > 750 && (this.UCunit.type == Unit.U_ARCHER || this.UCunit.type == Unit.U_FLYING_CROSSBOWMAN))
+                                                  {
+                                                            this.UCunit.ai.mayMoveToAttack = false;
+                                                            this.attacking = false;
+                                                  }
+                                                  else if(Math.abs(this.UCunit.px - this.UCunit.ai.getClosestUnitTarget().px) > 400 && !(this.UCunit.type == Unit.U_ARCHER || this.UCunit.type == Unit.U_FLYING_CROSSBOWMAN))
+                                                  {
+                                                            this.UCunit.ai.mayMoveToAttack = false;
+                                                            this.attacking = false;
+                                                  }
+                                                  else
+                                                  {
+                                                            this.UCunit.ai.mayMoveToAttack = true;
+                                                            this.attacking = true;
+                                                  }
                                                   this.UCunit.ai.setCommand(this.gameScreen.game,new StandCommand(this.gameScreen.game));
-                                                  this.UCunit.ai.mayMoveToAttack = true;
                                                   this.UCunit.ai.mayAttack = true;
                                         }
                                         if(this.keyBoardState.isDown(39) || this.keyBoardState.isDown(68))
@@ -825,10 +860,6 @@ package com.brockw.stickwar.engine
                               {
                                         return;
                               }
-                              if(this.keyBoardState.isPressed(9))
-                              {
-                                        this.selectedUnits.nextSelectedUnitType();
-                              }
                               if(!this.UCunit && this.keyBoardState.isPressed(32) || this.keyBoardState.isPressed(32) && this.UCunit && Math.abs(this.UCunit.px - this.UCunit.ai.getClosestUnitTarget().px) > 400)
                               {
                                         this.selectedUnits.clear();
@@ -912,7 +943,7 @@ package com.brockw.stickwar.engine
                               {
                                         this.team.detectedUserInput(this);
                               }
-                              if(!this.keyBoardState.isPressed(71))
+                              if(this.keyBoardState.isPressed(71))
                               {
                               }
                               if(this.mouseState.mouseIn && this.stage.mouseY < this.gameScreen.game.battlefield.y + 240)

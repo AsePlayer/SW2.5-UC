@@ -423,7 +423,7 @@ package com.brockw.stickwar.engine
                                                                                           }
                                                                                           _loc6_++;
                                                                                 }
-                                                                                if(!(_loc11_.hotKey == 83 && param1.game.gameScreen.userInterface.goingDown))
+                                                                                if(!(_loc11_.hotKey == 83 && param1.game.gameScreen.userInterface.goingDown) && !(_loc11_.hotKey == 87 && param1.game.gameScreen.userInterface.goingUp))
                                                                                 {
                                                                                           if(_loc11_.getGoldRequired() > this.team.gold)
                                                                                           {

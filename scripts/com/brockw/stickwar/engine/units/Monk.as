@@ -126,11 +126,15 @@ package com.brockw.stickwar.engine.units
                               {
                                         damageToDeal = game.xml.xml.Order.Units.monk.baseDamage * 1.5;
                                         _maxVelocity = game.xml.xml.Order.Units.monk.maxVelocity * 1.25;
+                                        this._healAmount = game.xml.xml.Order.Units.monk.heal.amount * 1.5;
+                                        this._healDuration = game.xml.xml.Order.Units.monk.heal.duration * 0.75;
                               }
                               else
                               {
                                         damageToDeal = game.xml.xml.Order.Units.monk.baseDamage;
                                         _maxVelocity = game.xml.xml.Order.Units.monk.maxVelocity;
+                                        this._healAmount = game.xml.xml.Order.Units.monk.heal.amount;
+                                        this._healDuration = game.xml.xml.Order.Units.monk.heal.duration;
                               }
                               var target:Unit = null;
                               var p:Point = null;
@@ -225,7 +229,7 @@ package com.brockw.stickwar.engine.units
                                                   if(!hasHit)
                                                   {
                                                             hasHit = this.checkForHit();
-                                                            if(hasHit)
+                                                            if(!hasHit)
                                                             {
                                                             }
                                                   }
