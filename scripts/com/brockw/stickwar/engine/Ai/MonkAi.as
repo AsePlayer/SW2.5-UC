@@ -20,7 +20,7 @@ package com.brockw.stickwar.engine.Ai
                     private static const healCommand:HealCommand = new HealCommand(null);
                      
                     
-                    private var inRange:Unit;
+                    public var inRange:Unit;
                     
                     public function MonkAi(s:Monk)
                     {
@@ -108,7 +108,7 @@ package com.brockw.stickwar.engine.Ai
                                                   game.spatialHash.mapInArea(unit.px - range,unit.py - range,unit.px + range,unit.py + range,this.lowestUnit,false);
                                                   if(this.inRange != null && this.inRange.health != this.inRange.maxHealth)
                                                   {
-                                                            if(!Monk(unit).healSpell(this.inRange))
+                                                            if(Monk(unit).healSpell(this.inRange))
                                                             {
                                                             }
                                                             return;

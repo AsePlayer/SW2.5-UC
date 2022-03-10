@@ -201,6 +201,25 @@ package com.brockw.stickwar.engine
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
                               ++main.loadingFraction;
                               this.lastButton = null;
                               this.main = main;
@@ -610,7 +629,33 @@ package com.brockw.stickwar.engine
                                         this.UCunit.isUC = true;
                                         if(this.keyBoardState.isDown(32))
                                         {
-                                                  if(Math.abs(this.UCunit.px - this.UCunit.ai.getClosestUnitTarget().px) > 600 && this.UCunit.type == Unit.U_ENSLAVED_GIANT)
+                                                  if(this.UCunit.type == Unit.U_MONK && this.UCunit.ai.inRange)
+                                                  {
+                                                            if(this.UCunit.healCooldown() == 0)
+                                                            {
+                                                                      this.UCunit.healSpell(this.UCunit.ai.inRange);
+                                                                      this.UCunit.ai.inRange.heal(30,1);
+                                                            }
+                                                            if(this.UCunit.cureCooldown() == 0)
+                                                            {
+                                                                      this.UCunit.cureSpell(this.UCunit.ai.inRange);
+                                                                      this.UCunit.ai.inRange.cure();
+                                                            }
+                                                  }
+                                                  else if(this.UCunit.type == Unit.U_MONK)
+                                                  {
+                                                            if(this.UCunit.healCooldown() == 0)
+                                                            {
+                                                                      this.UCunit.healSpell(this.UCunit);
+                                                                      this.UCunit.heal(30,1);
+                                                            }
+                                                            if(this.UCunit.cureCooldown() == 0)
+                                                            {
+                                                                      this.UCunit.cureSpell(this.UCunit);
+                                                                      this.UCunit.cure();
+                                                            }
+                                                  }
+                                                  else if(Math.abs(this.UCunit.px - this.UCunit.ai.getClosestUnitTarget().px) > 600 && this.UCunit.type == Unit.U_ENSLAVED_GIANT)
                                                   {
                                                             this.UCunit.ai.mayMoveToAttack = false;
                                                             this.attacking = false;
@@ -944,7 +989,7 @@ package com.brockw.stickwar.engine
                               {
                                         this.team.detectedUserInput(this);
                               }
-                              if(this.keyBoardState.isPressed(71))
+                              if(!this.keyBoardState.isPressed(71))
                               {
                               }
                               if(this.mouseState.mouseIn && this.stage.mouseY < this.gameScreen.game.battlefield.y + 240)
