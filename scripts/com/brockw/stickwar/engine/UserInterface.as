@@ -220,6 +220,15 @@ package com.brockw.stickwar.engine
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
                               ++main.loadingFraction;
                               this.lastButton = null;
                               this.main = main;
@@ -595,15 +604,30 @@ package com.brockw.stickwar.engine
                               {
                                         --this.attackTimer;
                               }
-                              if(this.keyBoardState.isDown(9))
+                              if(this.keyBoardState.isDown(9) || this.UCunit && (this.UCunit.isDead || this.UCunit.health <= 0))
                               {
                                         if(this.leaveUCTimer <= 0)
                                         {
                                                   if(this.UCunit)
                                                   {
                                                             this.UCunit.isUC = false;
-                                                            this.UCunit = null;
-                                                            this.gameScreen.game.soundManager.playSoundFullVolume("Hellfistout3");
+                                                            if(this.UCunit.isDead)
+                                                            {
+                                                                      for each(_loc5_ in this.team.units)
+                                                                      {
+                                                                                if(!_loc5_.isDead && !_loc5_.health <= 0)
+                                                                                {
+                                                                                          this.UCunit = _loc5_;
+                                                                                          break;
+                                                                                }
+                                                                      }
+                                                                      this.gameScreen.game.soundManager.playSoundFullVolume("TowerCapture");
+                                                            }
+                                                            else
+                                                            {
+                                                                      this.UCunit = null;
+                                                                      this.gameScreen.game.soundManager.playSoundFullVolume("Hellfistout3");
+                                                            }
                                                             if(this.gameScreen.contains(this.arrow))
                                                             {
                                                                       this.gameScreen.removeChild(this.arrow);
@@ -989,7 +1013,7 @@ package com.brockw.stickwar.engine
                               {
                                         this.team.detectedUserInput(this);
                               }
-                              if(!this.keyBoardState.isPressed(71))
+                              if(this.keyBoardState.isPressed(71))
                               {
                               }
                               if(this.mouseState.mouseIn && this.stage.mouseY < this.gameScreen.game.battlefield.y + 240)
