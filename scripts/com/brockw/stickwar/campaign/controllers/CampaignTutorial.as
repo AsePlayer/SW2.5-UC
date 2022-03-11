@@ -298,7 +298,7 @@ package com.brockw.stickwar.campaign.controllers
                                                   this.s1.selected = true;
                                                   this.s2.selected = true;
                                         }
-                                        this.message.setMessage("Press TAB to user control a selected unit. Move both units here.","Step #2",0,"voiceTutorial2");
+                                        this.message.setMessage("Press TAB to user control a selected unit. Move that unit with WASD or the arrow keys.","Step #2",0,"voiceTutorial2");
                                         param1.game.screenX = 2200;
                                         param1.game.targetScreenX = 2200;
                                         this.arrow.visible = true;
@@ -307,7 +307,7 @@ package com.brockw.stickwar.campaign.controllers
                               }
                               else if(this.state == S_MOVE_SCREEN)
                               {
-                                        this.message.setMessage("Move your mouse here to scroll the screen sideways.","Step #3",0,"voiceTutorial3");
+                                        this.message.setMessage("Press TAB to leave user control. Move your mouse here to scroll the screen sideways.","Step #3",0,"voiceTutorial3");
                                         this.arrow.visible = true;
                                         if(param1.game.targetScreenX > 2900)
                                         {
