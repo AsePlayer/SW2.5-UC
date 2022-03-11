@@ -107,6 +107,14 @@ package com.brockw.stickwar.engine.units
                     
                     override public function getDamageToDeal() : Number
                     {
+                              if(isUC && this.rageSpell.inEffect())
+                              {
+                                        return damageToDeal * 1.5 * 2;
+                              }
+                              if(isUC)
+                              {
+                                        return damageToDeal * 15;
+                              }
                               if(this.rageSpell.inEffect())
                               {
                                         return 2 * damageToDeal;
@@ -118,15 +126,27 @@ package com.brockw.stickwar.engine.units
                     {
                               if(isUC)
                               {
-                                        damageToDeal = game.xml.xml.Order.Units.swordwrath.baseDamage * 1.5;
                                         this.normalMaxVelocity = game.xml.xml.Order.Units.swordwrath.maxVelocity * 1.25;
                                         this.rageMaxVelocity = game.xml.xml.Order.Units.swordwrath.rage.rageMaxVelocity * 1.25;
+                                        _damageToNotArmour = (Number(game.xml.xml.Order.Units.swordwrath.damage) + Number(game.xml.xml.Order.Units.swordwrath.toNotArmour)) * 1.5;
+                                        _damageToArmour = (Number(game.xml.xml.Order.Units.swordwrath.damage) + Number(game.xml.xml.Order.Units.swordwrath.toArmour)) * 1.5;
                               }
-                              else
+                              else if(!team.isEnemy)
                               {
-                                        damageToDeal = game.xml.xml.Order.Units.swordwrath.baseDamage;
                                         this.normalMaxVelocity = game.xml.xml.Order.Units.swordwrath.maxVelocity;
                                         this.rageMaxVelocity = game.xml.xml.Order.Units.swordwrath.rage.rageMaxVelocity;
+                                        _damageToNotArmour = Number(game.xml.xml.Order.Units.swordwrath.damage) + Number(game.xml.xml.Order.Units.swordwrath.toNotArmour);
+                                        _damageToArmour = Number(game.xml.xml.Order.Units.swordwrath.damage) + Number(game.xml.xml.Order.Units.swordwrath.toArmour);
+                              }
+                              else if(team.isEnemy && !enemyBuffed)
+                              {
+                                        _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        health = health / 3 * team.game.main.campaign.difficultyLevel + 1;
+                                        maxHealth = health;
+                                        maxHealth = maxHealth;
+                                        healthBar.totalHealth = maxHealth;
+                                        enemyBuffed = true;
                               }
                               var currentLabel:String = null;
                               this.rageSpell.update();

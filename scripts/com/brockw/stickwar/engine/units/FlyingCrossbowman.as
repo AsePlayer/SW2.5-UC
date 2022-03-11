@@ -109,10 +109,24 @@ package com.brockw.stickwar.engine.units
                               if(isUC)
                               {
                                         _maxVelocity = game.xml.xml.Order.Units.flyingCrossbowman.maxVelocity * 1.25;
+                                        _damageToNotArmour = (Number(game.xml.xml.Order.Units.flyingCrossbowman.damage) + Number(game.xml.xml.Order.Units.flyingCrossbowman.toNotArmour)) * 1.5;
+                                        _damageToArmour = (Number(game.xml.xml.Order.Units.flyingCrossbowman.damage) + Number(game.xml.xml.Order.Units.flyingCrossbowman.toArmour)) * 1.5;
                               }
-                              else
+                              else if(!team.isEnemy)
                               {
-                                        _maxVelocity = game.xml.xml.Order.Units.flyingCrossbowman.maxVelocity * 1.25;
+                                        _maxVelocity = game.xml.xml.Order.Units.flyingCrossbowman.maxVelocity;
+                                        _damageToNotArmour = Number(game.xml.xml.Order.Units.flyingCrossbowman.damage) + Number(game.xml.xml.Order.Units.flyingCrossbowman.toNotArmour);
+                                        _damageToArmour = Number(game.xml.xml.Order.Units.flyingCrossbowman.damage) + Number(game.xml.xml.Order.Units.flyingCrossbowman.toArmour);
+                              }
+                              else if(team.isEnemy && !enemyBuffed)
+                              {
+                                        _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        health = health / 3 * team.game.main.campaign.difficultyLevel + 1;
+                                        maxHealth = health;
+                                        maxHealth = maxHealth;
+                                        healthBar.totalHealth = maxHealth;
+                                        enemyBuffed = true;
                               }
                               var bow:MovieClip = null;
                               super.update(game);
@@ -170,7 +184,7 @@ package com.brockw.stickwar.engine.units
                                         }
                                         else if(_state == S_RUN)
                                         {
-                                                  if(isFeetMoving())
+                                                  if(!isFeetMoving())
                                                   {
                                                   }
                                         }

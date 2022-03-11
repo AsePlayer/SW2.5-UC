@@ -245,15 +245,27 @@ package com.brockw.stickwar.engine.units
                               {
                                         this.maxStacks = game.xml.xml.Order.Units.ninja.fury.stacks * 1.5;
                                         this.stackDamage = game.xml.xml.Order.Units.ninja.fury.bonus * 1.5;
-                                        _maxVelocity = this.normalVelocity = game.xml.xml.Order.Units.ninja.maxVelocity * 1.25;
-                                        damageToDeal = loadDamage(game.xml.xml.Order.Units.ninja) * 1.5;
+                                        _maxVelocity = game.xml.xml.Order.Units.ninja.maxVelocity * 1.25;
+                                        _damageToNotArmour = (Number(game.xml.xml.Order.Units.ninja.damage) + Number(game.xml.xml.Order.Units.ninja.toNotArmour)) * 1.5;
+                                        _damageToArmour = (Number(game.xml.xml.Order.Units.ninja.damage) + Number(game.xml.xml.Order.Units.ninja.toArmour)) * 1.5;
                               }
-                              else
+                              else if(!team.isEnemy)
                               {
                                         this.maxStacks = game.xml.xml.Order.Units.ninja.fury.stacks;
                                         this.stackDamage = game.xml.xml.Order.Units.ninja.fury.bonus;
-                                        _maxVelocity = this.normalVelocity = game.xml.xml.Order.Units.ninja.maxVelocity;
-                                        damageToDeal = loadDamage(game.xml.xml.Order.Units.ninja);
+                                        _maxVelocity = game.xml.xml.Order.Units.ninja.maxVelocity;
+                                        _damageToNotArmour = Number(game.xml.xml.Order.Units.ninja.damage) + Number(game.xml.xml.Order.Units.ninja.toNotArmour);
+                                        _damageToArmour = Number(game.xml.xml.Order.Units.ninja.damage) + Number(game.xml.xml.Order.Units.ninja.toArmour);
+                              }
+                              else if(team.isEnemy && !enemyBuffed)
+                              {
+                                        _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        health = health / 3 * team.game.main.campaign.difficultyLevel + 1;
+                                        maxHealth = health;
+                                        maxHealth = maxHealth;
+                                        healthBar.totalHealth = maxHealth;
+                                        enemyBuffed = true;
                               }
                               this._stealthSpellTimer.update();
                               updateCommon(game);

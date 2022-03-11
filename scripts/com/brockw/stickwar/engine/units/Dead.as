@@ -157,10 +157,20 @@ package com.brockw.stickwar.engine.units
                               var p:Point = null;
                               var v:int = 0;
                               var damage:int = 0;
-                              var poisonDamage:Number = NaN;
+                              var poisonDamage:* = NaN;
                               var realPoisonToggle:Boolean = false;
                               super.update(game);
                               updateCommon(game);
+                              if(team.isEnemy && !enemyBuffed)
+                              {
+                                        _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        health = health / 3 * team.game.main.campaign.difficultyLevel + 1;
+                                        maxHealth = health;
+                                        maxHealth = maxHealth;
+                                        healthBar.totalHealth = maxHealth;
+                                        enemyBuffed = true;
+                              }
                               if(!isDieing)
                               {
                                         updateMotion(game);

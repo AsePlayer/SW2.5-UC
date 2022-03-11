@@ -122,19 +122,39 @@ package com.brockw.stickwar.engine.units
                     
                     override public function update(game:StickWar) : void
                     {
-                              if(isUC)
-                              {
-                                        damageToDeal = game.xml.xml.Order.Units.monk.baseDamage * 1.5;
-                                        _maxVelocity = game.xml.xml.Order.Units.monk.maxVelocity * 1.25;
-                                        this._healAmount = game.xml.xml.Order.Units.monk.heal.amount * 1.5;
-                                        this._healDuration = game.xml.xml.Order.Units.monk.heal.duration * 0.75;
-                              }
-                              else
+                              if(!isUC)
                               {
                                         damageToDeal = game.xml.xml.Order.Units.monk.baseDamage;
                                         _maxVelocity = game.xml.xml.Order.Units.monk.maxVelocity;
                                         this._healAmount = game.xml.xml.Order.Units.monk.heal.amount;
                                         this._healDuration = game.xml.xml.Order.Units.monk.heal.duration;
+                              }
+                              if(isUC)
+                              {
+                                        this._healAmount = game.xml.xml.Order.Units.monk.heal.amount * 1.5;
+                                        this._healDuration = game.xml.xml.Order.Units.monk.heal.duration * 0.75;
+                                        _maxVelocity = game.xml.xml.Order.Units.monk.maxVelocity * 1.25;
+                                        _damageToNotArmour = (Number(game.xml.xml.Order.Units.monk.damage) + Number(game.xml.xml.Order.Units.monk.toNotArmour)) * 1.5;
+                                        _damageToArmour = (Number(game.xml.xml.Order.Units.monk.damage) + Number(game.xml.xml.Order.Units.monk.toArmour)) * 1.5;
+                              }
+                              else if(!team.isEnemy)
+                              {
+                                        this._healAmount = game.xml.xml.Order.Units.monk.heal.amount;
+                                        this._healDuration = game.xml.xml.Order.Units.monk.heal.duration;
+                                        _maxVelocity = game.xml.xml.Order.Units.monk.maxVelocity;
+                                        _damageToNotArmour = Number(game.xml.xml.Order.Units.monk.damage) + Number(game.xml.xml.Order.Units.monk.toNotArmour);
+                                        _damageToArmour = Number(game.xml.xml.Order.Units.monk.damage) + Number(game.xml.xml.Order.Units.monk.toArmour);
+                              }
+                              else if(team.isEnemy && !enemyBuffed)
+                              {
+                                        _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        this._healAmount = this._healAmount / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        health = health / 3 * team.game.main.campaign.difficultyLevel + 1;
+                                        maxHealth = health;
+                                        maxHealth = maxHealth;
+                                        healthBar.totalHealth = maxHealth;
+                                        enemyBuffed = true;
                               }
                               var target:Unit = null;
                               var p:Point = null;
@@ -229,7 +249,7 @@ package com.brockw.stickwar.engine.units
                                                   if(!hasHit)
                                                   {
                                                             hasHit = this.checkForHit();
-                                                            if(!hasHit)
+                                                            if(hasHit)
                                                             {
                                                             }
                                                   }

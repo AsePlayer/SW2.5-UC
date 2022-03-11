@@ -158,6 +158,16 @@ package com.brockw.stickwar.engine.units
                     
                     override public function update(game:StickWar) : void
                     {
+                              if(team.isEnemy && !enemyBuffed)
+                              {
+                                        _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        health = health / 3 * team.game.main.campaign.difficultyLevel + 1;
+                                        maxHealth = health;
+                                        maxHealth = maxHealth;
+                                        healthBar.totalHealth = maxHealth;
+                                        enemyBuffed = true;
+                              }
                               var id:int = 0;
                               var oreMined:* = undefined;
                               var distance:Number = NaN;

@@ -294,6 +294,8 @@ package com.brockw.stickwar.engine.units
                     
                     public var speedUC:int;
                     
+                    public var enemyBuffed:Boolean;
+                    
                     public function Unit(game:StickWar)
                     {
                               this.hasDefaultLoadout = false;

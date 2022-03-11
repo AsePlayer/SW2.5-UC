@@ -137,6 +137,10 @@ package com.brockw.stickwar.campaign
                               if(!this.main.isKongregate && this.main.isCampaignDebug && this.keyboard.isDown(78) && this.keyboard.isShift)
                               {
                                         ++this.main.campaign.currentLevel;
+                                        if(this.main.campaign.currentLevel % 2)
+                                        {
+                                                  ++this.main.campaign.campaignPoints;
+                                        }
                                         ++this.main.campaign.campaignPoints;
                                         if(this.main.campaign.isGameFinished())
                                         {

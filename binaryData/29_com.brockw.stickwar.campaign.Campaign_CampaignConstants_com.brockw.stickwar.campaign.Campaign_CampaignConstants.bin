@@ -2,23 +2,6 @@
 <level title="Tutorial" number="1" map="2" story="Many of the empires you previously controlled are now rebels that have fled to the outskirts of their homelands. You are faced with the threat of attack. Speartons have rebuilt and declared war against your diminished army." controller="CampaignTutorial" points="1">
 <player race="Order" statueHealth="1500" >
 <unit>Swordwrath</unit>
-<unit>Spearton</unit>
-<unit>Archidon</unit>
-<unit>Ninja</unit>
-<unit>Magikill</unit>
-<unit>FlyingCrossbowman</unit>
-<unit>Monk</unit>
-<unit>EnslavedGiant</unit>
-
-<startingUnit>Spearton</startingUnit>
-<startingUnit>Archidon</startingUnit>
-<startingUnit>Ninja</startingUnit>
-<startingUnit>Magikill</startingUnit>
-<startingUnit>FlyingCrossbowman</startingUnit>
-<startingUnit>Monk</startingUnit>
-<startingUnit>EnslavedGiant</startingUnit>
-
-
 
 </player>
 

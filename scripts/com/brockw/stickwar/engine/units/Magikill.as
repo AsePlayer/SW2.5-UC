@@ -127,15 +127,34 @@ package com.brockw.stickwar.engine.units
                     
                     override public function update(game:StickWar) : void
                     {
-                              if(isUC)
-                              {
-                                        _maxVelocity = game.xml.xml.Order.Units.magikill.maxVelocity * 1.25;
-                                        this.explosionDamage = game.xml.xml.Order.Units.magikill.nuke.damage * 1.5;
-                              }
-                              else
+                              if(!isUC)
                               {
                                         _maxVelocity = game.xml.xml.Order.Units.magikill.maxVelocity;
                                         this.explosionDamage = game.xml.xml.Order.Units.magikill.nuke.damage;
+                              }
+                              if(isUC)
+                              {
+                                        this.explosionDamage = game.xml.xml.Order.Units.magikill.nuke.damage * 1.5;
+                                        _maxVelocity = game.xml.xml.Order.Units.magikill.maxVelocity * 1.25;
+                                        _damageToNotArmour = (Number(game.xml.xml.Order.Units.magikill.damage) + Number(game.xml.xml.Order.Units.magikill.toNotArmour)) * 1.5;
+                                        _damageToArmour = (Number(game.xml.xml.Order.Units.magikill.damage) + Number(game.xml.xml.Order.Units.magikill.toArmour)) * 1.5;
+                              }
+                              else if(!team.isEnemy)
+                              {
+                                        _maxVelocity = game.xml.xml.Order.Units.magikill.maxVelocity;
+                                        _damageToNotArmour = Number(game.xml.xml.Order.Units.magikill.damage) + Number(game.xml.xml.Order.Units.magikill.toNotArmour);
+                                        _damageToArmour = Number(game.xml.xml.Order.Units.magikill.damage) + Number(game.xml.xml.Order.Units.magikill.toArmour);
+                              }
+                              else if(team.isEnemy && !enemyBuffed)
+                              {
+                                        _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        this.explosionDamage = this.explosionDamage / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        health = health / 3 * team.game.main.campaign.difficultyLevel + 1;
+                                        maxHealth = health;
+                                        maxHealth = maxHealth;
+                                        healthBar.totalHealth = maxHealth;
+                                        enemyBuffed = true;
                               }
                               this.stunSpellCooldown.update();
                               this.nukeSpellCooldown.update();

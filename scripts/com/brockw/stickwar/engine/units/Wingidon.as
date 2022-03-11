@@ -102,7 +102,7 @@ package com.brockw.stickwar.engine.units
                     
                     public function speedSpell() : void
                     {
-                              if(!this.wingidonSpeedSpell.spellActivate(team))
+                              if(this.wingidonSpeedSpell.spellActivate(team))
                               {
                               }
                     }
@@ -114,6 +114,16 @@ package com.brockw.stickwar.engine.units
                     
                     override public function update(game:StickWar) : void
                     {
+                              if(team.isEnemy && !enemyBuffed)
+                              {
+                                        _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        health = health / 3 * team.game.main.campaign.difficultyLevel + 1;
+                                        maxHealth = health;
+                                        maxHealth = maxHealth;
+                                        healthBar.totalHealth = maxHealth;
+                                        enemyBuffed = true;
+                              }
                               var arms:MovieClip = null;
                               this.wingidonSpeedSpell.update();
                               super.update(game);

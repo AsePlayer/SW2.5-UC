@@ -152,13 +152,25 @@ package com.brockw.stickwar.engine.units
                               super.update(game);
                               if(isUC)
                               {
-                                        this.arrowDamage = game.xml.xml.Order.Units.archer.damage * 1.5;
                                         _maxVelocity = game.xml.xml.Order.Units.archer.maxVelocity * 1.25;
+                                        _damageToNotArmour = (Number(game.xml.xml.Order.Units.archer.damage) + Number(game.xml.xml.Order.Units.archer.toNotArmour)) * 1.5;
+                                        _damageToArmour = (Number(game.xml.xml.Order.Units.archer.damage) + Number(game.xml.xml.Order.Units.archer.toArmour)) * 1.5;
                               }
-                              else
+                              else if(!team.isEnemy)
                               {
-                                        this.arrowDamage = game.xml.xml.Order.Units.archer.damage;
                                         _maxVelocity = game.xml.xml.Order.Units.archer.maxVelocity;
+                                        _damageToNotArmour = Number(game.xml.xml.Order.Units.archer.damage) + Number(game.xml.xml.Order.Units.archer.toNotArmour);
+                                        _damageToArmour = Number(game.xml.xml.Order.Units.archer.damage) + Number(game.xml.xml.Order.Units.archer.toArmour);
+                              }
+                              else if(team.isEnemy && !enemyBuffed)
+                              {
+                                        _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        health = health / 3 * team.game.main.campaign.difficultyLevel + 1;
+                                        maxHealth = health;
+                                        maxHealth = maxHealth;
+                                        healthBar.totalHealth = maxHealth;
+                                        enemyBuffed = true;
                               }
                               this.archerFireSpellCooldown.update();
                               updateCommon(game);
