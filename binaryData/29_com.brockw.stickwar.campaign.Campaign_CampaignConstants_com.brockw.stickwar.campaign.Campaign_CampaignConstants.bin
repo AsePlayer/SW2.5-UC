@@ -10,7 +10,7 @@
 <statue>spearton</statue>
 <unit>Spearton</unit>
 </oponent>
-<normal>1.8</normal>  
+<normal>.9</normal>  
 <hard>1.2</hard>
 <insane>.7</insane>
 <normalHealthScale>0.5</normalHealthScale>
@@ -21,7 +21,7 @@
 <level title="Blot out the sun: Archidons Declare War" number="2" map="4" story="The Archidon Empire wants revenge and their land back.  They have declared war against your Empire." controller="CampaignArcher" points="1">
 
 <unlock>Spearton</unlock>
-<normal>1.8</normal>
+<normal>.9</normal>
 <hard>1.4</hard>
 <insane>.7</insane>
 <normalHealthScale>.5</normalHealthScale>
@@ -58,7 +58,7 @@
 <level title="Silent Assassins: Ninjas Declare War" number="3" map="5" story="When the nations fled your control , some of the more cunning Swordwrath managed to escape and rebuild. They trained themselves into a new breed of Swordwrath more intelligent and skilled. This new race is called Shadowrath. " controller="CampaignShadow" points="1">
 
 <unlock>Archidon</unlock>
-<normal>1.7</normal>
+<normal>.9</normal>
 <hard>1.4</hard>
 <insane>.85</insane>
 <normalHealthScale>.4</normalHealthScale>
@@ -93,7 +93,7 @@
 <level title="Magic in the Air: Wizards and monks Declare War " number="4" map="2" story="The Rebel Magikill have trained the women of their empire in the art of magic, creating powerful Merics with the ability to heal and cure." controller="" points="1">
 <hasInsaneWall>true</hasInsaneWall>
 <unlock>Ninja</unlock>
-<normal>1.7</normal>
+<normal>1.3</normal>
 <hard>1.6</hard>
 <insane>.9</insane>
 <normalHealthScale>.6</normalHealthScale>
@@ -133,7 +133,7 @@
 <hasInsaneWall>true</hasInsaneWall>
 <unlock>Magikill</unlock>
 <unlock>Monk</unlock>
-<normal>1.65</normal>
+<normal>1.1</normal>
 <hard>1.5</hard>
 <insane>.85</insane>
 <normalHealthScale>.6</normalHealthScale>
@@ -186,7 +186,7 @@
 
 <level title="Massive Battle" number="6" map="3" story="Sometimes what seems like the end is merely the beginning of the end." controller="CampaignCutScene1" points="1">
 <hasInsaneWall>true</hasInsaneWall>
-<normal>1.75</normal>
+<normal>1.2</normal>
 <hard>.95</hard>
 <insane>.8</insane>
 <normalHealthScale>.5</normalHealthScale>
@@ -221,7 +221,7 @@
 <level title="Explosive War: Bombers Attack" number="7" map="2" story="Medusa vows to whipe Order Empire out of Inamorta.  Her first display of power is to  send some of her minion bombers and Giants  to destroy you." controller="CampaignBomber" points="1">
 <hasInsaneWall>true</hasInsaneWall>
 <unlock>EnslavedGiant</unlock>
-<normal>1.6</normal>
+<normal>.95</normal>
 <hard>.95</hard>
 <insane>.8</insane>
 <normalHealthScale>.55</normalHealthScale>
@@ -267,7 +267,7 @@
 
 <level title="The Night is Dark: Juggerknights Attack" number="8" map="3" story="Medusa unleashes her most ferocious heavily armored infantry." controller="CampaignKnight" points="1">
 <hasInsaneWall>true</hasInsaneWall>
-<normal>1.7</normal>
+<normal>1.1</normal>
 <hard>1.4</hard>
 <insane>.8</insane>
 <normalHealthScale>.6</normalHealthScale>
@@ -313,7 +313,7 @@
 
 <level title="Undead War: Deadly Deads Attack" number="9" map="2" story="Medusa attacks by revealing the Deads, an undead zombie that throws their own poisonous body parts." controller="CampaignDeads" points="1">
 <hasInsaneWall>true</hasInsaneWall>
-<normal>1.8</normal>
+<normal>1.1</normal>
 <hard>1.4</hard>
 <insane>.9</insane>
 <normalHealthScale>.55</normalHealthScale>
@@ -358,7 +358,7 @@
 
 <level title=" 4 legged Fury: Crawlers Attack" number="10" map="4" story="Medusa Unleashes the Crawlers, a fast assassin that becomes more powerful in a pack." controller="" points="1">
 <hasInsaneWall>true</hasInsaneWall>
-<normal>1.6</normal>
+<normal>1.1</normal>
 <hard>1.3</hard>
 <insane>.8</insane>
 <normalHealthScale>.7</normalHealthScale>
@@ -401,7 +401,7 @@
 
 <level title="Shadow of the moon: Eclipsors Attack." number="11" map="0" story="Medusa's tricks seem to never end. The Eclipsor is revealed, a flying archer that can only be hit by projectile units." controller="" points="1">
 <hasInsaneWall>true</hasInsaneWall>
-<normal>1.7</normal>
+<normal>1.1</normal>
 <hard>1.5</hard>
 <insane>.9</insane>
 <normalHealthScale>.75</normalHealthScale>
@@ -451,7 +451,7 @@
 <level title="Bone Pile: Marrowkai summon war" number="12" map="2" story="You have mimicked the flight of the Eclipsor and crafted technology to have your own  flying unit that wields a crossbow. Meanwhile a new Chaos Mage, the Marrowkai, is reaping havoc." controller="" points="1">
 <hasInsaneWall>true</hasInsaneWall>
 <unlock>FlyingCrossbowman</unlock>
-<normal>1.65</normal>
+<normal>1.1</normal>
 <hard>1.4</hard>
 <insane>.8</insane>
 <normalHealthScale>.7</normalHealthScale>
@@ -506,7 +506,7 @@
 
 <level title="Medusa's Gates: The Chaos Capital is in sight. " number="13" map="6" story="You are on the outskirts of Medusas homeland.  A final push is near." controller="" points="1">
 <hasInsaneWall>true</hasInsaneWall>
-<normal>1.6</normal>
+<normal>1.1</normal>
 <hard>1.4</hard>
 <insane>.8</insane>
 <normalHealthScale>.7</normalHealthScale>
@@ -568,7 +568,7 @@
 
 <level title="Medusa and the Full Chaos Empire: Final battle" number="14" map="7" story="You have pushed Medusa and her Chaos Empire back to their Capital. They have no where left to run. Do not hold back! Inamorta is at stake." controller="CampaignCutScene2" points="1">
 <hasInsaneWall>true</hasInsaneWall>
-<normal>1.6</normal>
+<normal>1.1</normal>
 <hard>1.4</hard>
 <insane>.78</insane>
 <normalHealthScale>.7</normalHealthScale>
