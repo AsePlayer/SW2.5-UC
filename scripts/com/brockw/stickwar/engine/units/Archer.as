@@ -162,7 +162,7 @@ package com.brockw.stickwar.engine.units
                                         _damageToNotArmour = Number(game.xml.xml.Order.Units.archer.damage) + Number(game.xml.xml.Order.Units.archer.toNotArmour);
                                         _damageToArmour = Number(game.xml.xml.Order.Units.archer.damage) + Number(game.xml.xml.Order.Units.archer.toArmour);
                               }
-                              else if(team.isEnemy && !enemyBuffed)
+                              else if(team.isEnemy && !enemyBuffed && !this.isCastleArcher)
                               {
                                         _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
                                         _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;

@@ -161,7 +161,7 @@ package com.brockw.stickwar.engine.units
                               var realPoisonToggle:Boolean = false;
                               super.update(game);
                               updateCommon(game);
-                              if(team.isEnemy && !enemyBuffed)
+                              if(team.isEnemy && !enemyBuffed && !this.isCastleArcher)
                               {
                                         _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
                                         _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
