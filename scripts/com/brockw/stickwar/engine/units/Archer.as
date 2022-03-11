@@ -166,7 +166,7 @@ package com.brockw.stickwar.engine.units
                               {
                                         _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
                                         _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
-                                        health = health / 2.5 * (team.game.main.campaign.difficultyLevel + 1);
+                                        health = Number(game.xml.xml.Order.Units.archer.health) / 2.5 * (team.game.main.campaign.difficultyLevel + 1);
                                         maxHealth = health;
                                         maxHealth = maxHealth;
                                         healthBar.totalHealth = maxHealth;
