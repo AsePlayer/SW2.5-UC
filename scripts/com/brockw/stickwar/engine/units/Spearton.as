@@ -137,8 +137,8 @@ package com.brockw.stickwar.engine.units
                               if(isUC)
                               {
                                         _maxVelocity = game.xml.xml.Order.Units.spearton.maxVelocity * 1.25;
-                                        _damageToNotArmour = (Number(game.xml.xml.Order.Units.spearton.damage) + Number(game.xml.xml.Order.Units.spearton.toNotArmour)) * 1.5;
-                                        _damageToArmour = (Number(game.xml.xml.Order.Units.spearton.damage) + Number(game.xml.xml.Order.Units.spearton.toArmour)) * 1.5;
+                                        _damageToNotArmour = (Number(game.xml.xml.Order.Units.spearton.damage) + Number(game.xml.xml.Order.Units.spearton.toNotArmour)) * 1.25 * Number(team.game.main.campaign.difficultyLevel);
+                                        _damageToArmour = (Number(game.xml.xml.Order.Units.spearton.damage) + Number(game.xml.xml.Order.Units.spearton.toArmour)) * 1.25 * Number(team.game.main.campaign.difficultyLevel);
                               }
                               else if(!team.isEnemy)
                               {
@@ -148,9 +148,9 @@ package com.brockw.stickwar.engine.units
                               }
                               else if(team.isEnemy && !enemyBuffed)
                               {
-                                        _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
-                                        _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
-                                        health = health / 3 * team.game.main.campaign.difficultyLevel + 1;
+                                        _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel;
+                                        _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel;
+                                        health = health / 2.5 * (team.game.main.campaign.difficultyLevel + 1);
                                         maxHealth = health;
                                         maxHealth = maxHealth;
                                         healthBar.totalHealth = maxHealth;

@@ -131,11 +131,11 @@ package com.brockw.stickwar.engine.units
                               }
                               if(isUC)
                               {
-                                        this._healAmount = game.xml.xml.Order.Units.monk.heal.amount * 1.5;
+                                        this._healAmount = game.xml.xml.Order.Units.monk.heal.amount * 1.25 * Number(team.game.main.campaign.difficultyLevel);
                                         this._healDuration = game.xml.xml.Order.Units.monk.heal.duration * 0.75;
                                         _maxVelocity = game.xml.xml.Order.Units.monk.maxVelocity * 1.25;
-                                        _damageToNotArmour = (Number(game.xml.xml.Order.Units.monk.damage) + Number(game.xml.xml.Order.Units.monk.toNotArmour)) * 1.5;
-                                        _damageToArmour = (Number(game.xml.xml.Order.Units.monk.damage) + Number(game.xml.xml.Order.Units.monk.toArmour)) * 1.5;
+                                        _damageToNotArmour = (Number(game.xml.xml.Order.Units.monk.damage) + Number(game.xml.xml.Order.Units.monk.toNotArmour)) * 1.25 * Number(team.game.main.campaign.difficultyLevel);
+                                        _damageToArmour = (Number(game.xml.xml.Order.Units.monk.damage) + Number(game.xml.xml.Order.Units.monk.toArmour)) * 1.25 * Number(team.game.main.campaign.difficultyLevel);
                               }
                               else if(!team.isEnemy)
                               {
@@ -150,7 +150,7 @@ package com.brockw.stickwar.engine.units
                                         _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
                                         _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
                                         this._healAmount = this._healAmount / 2 * team.game.main.campaign.difficultyLevel + 1;
-                                        health = health / 3 * team.game.main.campaign.difficultyLevel + 1;
+                                        health = health / 2.5 * (team.game.main.campaign.difficultyLevel + 1);
                                         maxHealth = health;
                                         maxHealth = maxHealth;
                                         healthBar.totalHealth = maxHealth;

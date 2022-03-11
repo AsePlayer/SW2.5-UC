@@ -246,8 +246,8 @@ package com.brockw.stickwar.engine.units
                                         this.maxStacks = game.xml.xml.Order.Units.ninja.fury.stacks * 1.5;
                                         this.stackDamage = game.xml.xml.Order.Units.ninja.fury.bonus * 1.5;
                                         _maxVelocity = game.xml.xml.Order.Units.ninja.maxVelocity * 1.25;
-                                        _damageToNotArmour = (Number(game.xml.xml.Order.Units.ninja.damage) + Number(game.xml.xml.Order.Units.ninja.toNotArmour)) * 1.5;
-                                        _damageToArmour = (Number(game.xml.xml.Order.Units.ninja.damage) + Number(game.xml.xml.Order.Units.ninja.toArmour)) * 1.5;
+                                        _damageToNotArmour = (Number(game.xml.xml.Order.Units.ninja.damage) + Number(game.xml.xml.Order.Units.ninja.toNotArmour)) * 1.25 * Number(team.game.main.campaign.difficultyLevel);
+                                        _damageToArmour = (Number(game.xml.xml.Order.Units.ninja.damage) + Number(game.xml.xml.Order.Units.ninja.toArmour)) * 1.25 * Number(team.game.main.campaign.difficultyLevel);
                               }
                               else if(!team.isEnemy)
                               {
@@ -261,7 +261,7 @@ package com.brockw.stickwar.engine.units
                               {
                                         _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
                                         _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
-                                        health = health / 3 * team.game.main.campaign.difficultyLevel + 1;
+                                        health = health / 2.5 * (team.game.main.campaign.difficultyLevel + 1);
                                         maxHealth = health;
                                         maxHealth = maxHealth;
                                         healthBar.totalHealth = maxHealth;

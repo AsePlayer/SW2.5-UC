@@ -89,8 +89,8 @@ package com.brockw.stickwar.engine.units
                               if(isUC)
                               {
                                         _maxVelocity = 3 * 1.25;
-                                        _damageToNotArmour = (40 + 0) * 1.5;
-                                        _damageToArmour = (40 + 30) * 1.5;
+                                        _damageToNotArmour = (40 + 0) * 1.25 * Number(team.game.main.campaign.difficultyLevel);
+                                        _damageToArmour = (40 + 30) * 1.25 * Number(team.game.main.campaign.difficultyLevel);
                               }
                               else if(!team.isEnemy)
                               {
@@ -102,7 +102,7 @@ package com.brockw.stickwar.engine.units
                               {
                                         _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
                                         _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
-                                        health = health / 3 * team.game.main.campaign.difficultyLevel + 1;
+                                        health = health / 2.5 * (team.game.main.campaign.difficultyLevel + 1);
                                         maxHealth = health;
                                         maxHealth = maxHealth;
                                         healthBar.totalHealth = maxHealth;
