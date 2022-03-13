@@ -423,35 +423,36 @@ package com.brockw.stickwar.engine
                                                                                           }
                                                                                           _loc6_++;
                                                                                 }
-                                                                                if(!(_loc11_.hotKey == 83 && param1.game.gameScreen.userInterface.goingDown) && !(_loc11_.hotKey == 87 && param1.game.gameScreen.userInterface.goingUp) && !(_loc11_.hotKey == 65 && param1.game.gameScreen.userInterface.goingLeft))
+                                                                                if((_loc11_.hotKey == 83 || _loc11_.hotKey == 87 || _loc11_.hotKey == 65) && param1.game.gameScreen.userInterface.UCunit)
                                                                                 {
-                                                                                          if(_loc11_.getGoldRequired() > this.team.gold)
+                                                                                          trace("no no no!");
+                                                                                }
+                                                                                else if(_loc11_.getGoldRequired() > this.team.gold)
+                                                                                {
+                                                                                          param1.userInterface.helpMessage.showMessage("Not enough gold to cast ");
+                                                                                }
+                                                                                else if(_loc11_.getManaRequired() > this.team.mana)
+                                                                                {
+                                                                                          param1.userInterface.helpMessage.showMessage("Not enough mana to cast ");
+                                                                                }
+                                                                                else if(_loc5_ != 0)
+                                                                                {
+                                                                                          param1.userInterface.helpMessage.showMessage("Ability is on cooldown");
+                                                                                }
+                                                                                else if(!UnitCommand(this.actions[this.currentActions[_loc8_]]).requiresMouseInput)
+                                                                                {
+                                                                                          UnitCommand(this.actions[this.currentActions[_loc8_]]).prepareNetworkedMove(param1);
+                                                                                          if(this.actionsToButtonMap[this.currentActions[_loc8_]] != null)
                                                                                           {
-                                                                                                    param1.userInterface.helpMessage.showMessage("Not enough gold to cast ");
+                                                                                                    MovieClip(this.actionsToButtonMap[this.currentActions[_loc8_]]).alpha = 0.2;
                                                                                           }
-                                                                                          else if(_loc11_.getManaRequired() > this.team.mana)
-                                                                                          {
-                                                                                                    param1.userInterface.helpMessage.showMessage("Not enough mana to cast ");
-                                                                                          }
-                                                                                          else if(_loc5_ != 0)
-                                                                                          {
-                                                                                                    param1.userInterface.helpMessage.showMessage("Ability is on cooldown");
-                                                                                          }
-                                                                                          else if(!UnitCommand(this.actions[this.currentActions[_loc8_]]).requiresMouseInput)
-                                                                                          {
-                                                                                                    UnitCommand(this.actions[this.currentActions[_loc8_]]).prepareNetworkedMove(param1);
-                                                                                                    if(this.actionsToButtonMap[this.currentActions[_loc8_]] != null)
-                                                                                                    {
-                                                                                                              MovieClip(this.actionsToButtonMap[this.currentActions[_loc8_]]).alpha = 0.2;
-                                                                                                    }
-                                                                                          }
-                                                                                          else
-                                                                                          {
-                                                                                                    this.refresh();
-                                                                                                    this._currentMove = UnitCommand(this.actions[this.currentActions[_loc8_]]);
-                                                                                                    Mouse.hide();
-                                                                                                    this.clicked = false;
-                                                                                          }
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                          this.refresh();
+                                                                                          this._currentMove = UnitCommand(this.actions[this.currentActions[_loc8_]]);
+                                                                                          Mouse.hide();
+                                                                                          this.clicked = false;
                                                                                 }
                                                                       }
                                                                       else
