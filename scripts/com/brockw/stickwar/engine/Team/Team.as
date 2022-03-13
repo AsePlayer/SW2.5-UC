@@ -444,7 +444,11 @@ package com.brockw.stickwar.engine.Team
                               for(unit in this.units)
                               {
                                         u = this.units[unit];
-                                        if((u.type == Unit.U_MINER || u.type == Unit.U_CHAOS_MINER) && MinerAi(u.ai).targetOre != null)
+                                        if(u.isUC)
+                                        {
+                                                  trace("nah");
+                                        }
+                                        else if((u.type == Unit.U_MINER || u.type == Unit.U_CHAOS_MINER) && MinerAi(u.ai).targetOre != null)
                                         {
                                                   m = new UnitMove();
                                                   m.moveType = UnitCommand.MOVE;
@@ -538,7 +542,7 @@ package com.brockw.stickwar.engine.Team
                                                             }
                                                   }
                                         }
-                                        else
+                                        else if(!_loc6_.isUC)
                                         {
                                                   _loc4_.units.push(_loc6_.id);
                                         }

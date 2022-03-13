@@ -18,7 +18,7 @@
 
 </level>
 
-<level title="Blot out the sun: Archidons Declare War" number="2" map="4" story="The Archidon Empire wants revenge and their land back.  They have declared war against your Empire." controller="CampaignArcher" points="1">
+<level title="Blot out the sun: Archidons Declare War" number="2" map="4" story="The Archidon Empire wants revenge and their land back.  They have declared war against your Empire." controller="CampaignArcher" points="2">
 
 <unlock>Spearton</unlock>
 <normal>.9</normal>
@@ -90,7 +90,7 @@
 </oponent>
 </level>
 
-<level title="Magic in the Air: Wizards and monks Declare War " number="4" map="2" story="The Rebel Magikill have trained the women of their empire in the art of magic, creating powerful Merics with the ability to heal and cure." controller="" points="1">
+<level title="Magic in the Air: Wizards and monks Declare War " number="4" map="2" story="The Rebel Magikill have trained the women of their empire in the art of magic, creating powerful Merics with the ability to heal and cure." controller="" points="2">
 <hasInsaneWall>true</hasInsaneWall>
 <unlock>Ninja</unlock>
 <normal>1.3</normal>
@@ -184,7 +184,7 @@
 </oponent>
 </level>
 
-<level title="Massive Battle" number="6" map="3" story="Sometimes what seems like the end is merely the beginning of the end." controller="CampaignCutScene1" points="1">
+<level title="Massive Battle" number="6" map="3" story="Sometimes what seems like the end is merely the beginning of the end." controller="CampaignCutScene1" points="2">
 <hasInsaneWall>true</hasInsaneWall>
 <normal>1.2</normal>
 <hard>.95</hard>
@@ -265,7 +265,7 @@
 </oponent>
 </level>
 
-<level title="The Night is Dark: Juggerknights Attack" number="8" map="3" story="Medusa unleashes her most ferocious heavily armored infantry." controller="CampaignKnight" points="1">
+<level title="The Night is Dark: Juggerknights Attack" number="8" map="3" story="Medusa unleashes her most ferocious heavily armored infantry." controller="CampaignKnight" points="2">
 <hasInsaneWall>true</hasInsaneWall>
 <normal>1.1</normal>
 <hard>1.4</hard>
@@ -356,7 +356,7 @@
 </oponent>
 </level>
 
-<level title=" 4 legged Fury: Crawlers Attack" number="10" map="4" story="Medusa Unleashes the Crawlers, a fast assassin that becomes more powerful in a pack." controller="" points="1">
+<level title=" 4 legged Fury: Crawlers Attack" number="10" map="4" story="Medusa Unleashes the Crawlers, a fast assassin that becomes more powerful in a pack." controller="" points="2">
 <hasInsaneWall>true</hasInsaneWall>
 <normal>1.1</normal>
 <hard>1.3</hard>
@@ -448,7 +448,7 @@
 </oponent>
 </level>
 
-<level title="Bone Pile: Marrowkai summon war" number="12" map="2" story="You have mimicked the flight of the Eclipsor and crafted technology to have your own  flying unit that wields a crossbow. Meanwhile a new Chaos Mage, the Marrowkai, is reaping havoc." controller="" points="1">
+<level title="Bone Pile: Marrowkai summon war" number="12" map="2" story="You have mimicked the flight of the Eclipsor and crafted technology to have your own  flying unit that wields a crossbow. Meanwhile a new Chaos Mage, the Marrowkai, is reaping havoc." controller="" points="2">
 <hasInsaneWall>true</hasInsaneWall>
 <unlock>FlyingCrossbowman</unlock>
 <normal>1.1</normal>
@@ -566,7 +566,7 @@
 </oponent>
 </level>
 
-<level title="Medusa and the Full Chaos Empire: Final battle" number="14" map="7" story="You have pushed Medusa and her Chaos Empire back to their Capital. They have no where left to run. Do not hold back! Inamorta is at stake." controller="CampaignCutScene2" points="1">
+<level title="Medusa and the Full Chaos Empire: Final battle" number="14" map="7" story="You have pushed Medusa and her Chaos Empire back to their Capital. They have no where left to run. Do not hold back! Inamorta is at stake." controller="CampaignCutScene2" points="2">
 <hasInsaneWall>true</hasInsaneWall>
 <normal>1.1</normal>
 <hard>1.4</hard>

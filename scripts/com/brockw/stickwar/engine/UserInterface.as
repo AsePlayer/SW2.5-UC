@@ -134,6 +134,8 @@ package com.brockw.stickwar.engine
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
                               ++main.loadingFraction;
                               this.lastButton = null;
                               this.main = main;
@@ -536,6 +538,17 @@ package com.brockw.stickwar.engine
                                                             else
                                                             {
                                                                       this.UCcamera = false;
+                                                                      if(this.selectedUnits.selected[0])
+                                                                      {
+                                                                                if(!this.selectedUnits.selected[0].isUC)
+                                                                                {
+                                                                                          this.UCunit.ai.currentCommand = this.selectedUnits.selected[0].ai.currentCommand;
+                                                                                }
+                                                                                else if(this.selectedUnits.selected[1])
+                                                                                {
+                                                                                          this.UCunit.ai.currentCommand = this.selectedUnits.selected[1].ai.currentCommand;
+                                                                                }
+                                                                      }
                                                                       this.UCunit = null;
                                                                       this.gameScreen.game.soundManager.playSoundFullVolume("Hellfistout3");
                                                             }
