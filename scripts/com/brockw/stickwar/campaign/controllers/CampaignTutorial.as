@@ -307,7 +307,7 @@ package com.brockw.stickwar.campaign.controllers
                               }
                               else if(this.state == S_MOVE_SCREEN)
                               {
-                                        this.message.setMessage("Press TAB to leave user control. Move your mouse here to scroll the screen sideways.","Step #3",0,"voiceTutorial3");
+                                        this.message.setMessage("Press R while in user control to unlock the camera.","Step #3",0,"voiceTutorial3");
                                         this.arrow.visible = true;
                                         if(param1.game.targetScreenX > 2900)
                                         {

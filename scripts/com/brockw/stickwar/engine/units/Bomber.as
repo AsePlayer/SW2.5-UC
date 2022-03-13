@@ -5,7 +5,6 @@ package com.brockw.stickwar.engine.units
           import com.brockw.stickwar.engine.Ai.BomberAi;
           import com.brockw.stickwar.engine.Ai.command.UnitCommand;
           import com.brockw.stickwar.engine.StickWar;
-          import com.brockw.stickwar.market.MarketItem;
           import flash.display.MovieClip;
           
           public class Bomber extends Unit
@@ -121,6 +120,7 @@ package com.brockw.stickwar.engine.units
                                         maxHealth = health;
                                         maxHealth = maxHealth;
                                         healthBar.totalHealth = maxHealth;
+                                        _scale = _scale + Number(team.game.main.campaign.difficultyLevel) * 0.05 - 0.05;
                                         enemyBuffed = true;
                               }
                               updateCommon(game);
@@ -184,9 +184,24 @@ package com.brockw.stickwar.engine.units
                                         _mc.gotoAndStop(getDeathLabel(game));
                                         _mc.mc.alpha = 0;
                               }
-                              if(!hasDefaultLoadout)
+                              if(team.isEnemy)
                               {
-                                        Bomber.setItem(_bomber(mc),team.loadout.getItem(this.type,MarketItem.T_WEAPON),team.loadout.getItem(this.type,MarketItem.T_ARMOR),team.loadout.getItem(this.type,MarketItem.T_MISC));
+                                        if(team.game.main.campaign.difficultyLevel == 3)
+                                        {
+                                                  setItem(mc,"Rocket","","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 2)
+                                        {
+                                                  setItem(mc,"C4","","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 1)
+                                        {
+                                                  setItem(mc,"","","");
+                                        }
+                              }
+                              else
+                              {
+                                        setItem(mc,"","","");
                               }
                     }
                     

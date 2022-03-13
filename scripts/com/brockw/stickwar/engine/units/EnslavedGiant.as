@@ -4,7 +4,6 @@ package com.brockw.stickwar.engine.units
           import com.brockw.stickwar.engine.Ai.EnslavedGiantAi;
           import com.brockw.stickwar.engine.StickWar;
           import com.brockw.stickwar.engine.Team.Tech;
-          import com.brockw.stickwar.market.MarketItem;
           import flash.display.MovieClip;
           import flash.geom.Point;
           
@@ -102,10 +101,11 @@ package com.brockw.stickwar.engine.units
                               {
                                         _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
                                         _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
-                                        health = Number(game.xml.xml.Order.Units.giant.health) / 2.5 * (team.game.main.campaign.difficultyLevel + 1);
+                                        health = health / 2.5 * (team.game.main.campaign.difficultyLevel + 1);
                                         maxHealth = health;
                                         maxHealth = maxHealth;
                                         healthBar.totalHealth = maxHealth;
+                                        _scale = _scale + Number(team.game.main.campaign.difficultyLevel) * 0.05 - 0.05;
                                         enemyBuffed = true;
                               }
                               var _loc2_:Point = null;
@@ -230,9 +230,24 @@ package com.brockw.stickwar.engine.units
                               }
                               MovieClip(_mc.mc).nextFrame();
                               _mc.mc.stop();
-                              if(!hasDefaultLoadout)
+                              if(team.isEnemy)
                               {
-                                        EnslavedGiant.setItem(mc,team.loadout.getItem(this.type,MarketItem.T_WEAPON),"","");
+                                        if(team.game.main.campaign.difficultyLevel == 3)
+                                        {
+                                                  setItem(mc,"Bones Bag","","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 2)
+                                        {
+                                                  setItem(mc,"Wooden Bag","","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 1)
+                                        {
+                                                  setItem(mc,"","","");
+                                        }
+                              }
+                              else
+                              {
+                                        setItem(mc,"","","");
                               }
                     }
                     

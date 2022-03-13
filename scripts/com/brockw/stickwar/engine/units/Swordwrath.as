@@ -6,7 +6,6 @@ package com.brockw.stickwar.engine.units
           import com.brockw.stickwar.engine.Ai.command.UnitCommand;
           import com.brockw.stickwar.engine.StickWar;
           import com.brockw.stickwar.engine.Team.Tech;
-          import com.brockw.stickwar.market.MarketItem;
           import flash.display.MovieClip;
           import flash.filters.GlowFilter;
           
@@ -146,6 +145,7 @@ package com.brockw.stickwar.engine.units
                                         maxHealth = health;
                                         maxHealth = maxHealth;
                                         healthBar.totalHealth = maxHealth;
+                                        _scale = _scale + Number(team.game.main.campaign.difficultyLevel) * 0.05 - 0.05;
                                         enemyBuffed = true;
                               }
                               var currentLabel:String = null;
@@ -254,9 +254,24 @@ package com.brockw.stickwar.engine.units
                                         }
                                         MovieClip(_mc.mc).nextFrame();
                               }
-                              if(!hasDefaultLoadout)
+                              if(team.isEnemy)
                               {
-                                        Swordwrath.setItem(_swordwrath(mc),team.loadout.getItem(this.type,MarketItem.T_WEAPON),"","");
+                                        if(team.game.main.campaign.difficultyLevel == 3)
+                                        {
+                                                  Swordwrath.setItem(_swordwrath(mc),"Fantasy Sword","","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 2)
+                                        {
+                                                  Swordwrath.setItem(_swordwrath(mc),"Saladins Sword","","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 1)
+                                        {
+                                                  Swordwrath.setItem(_swordwrath(mc),"","","");
+                                        }
+                              }
+                              else
+                              {
+                                        Swordwrath.setItem(_swordwrath(mc),"","","");
                               }
                     }
                     

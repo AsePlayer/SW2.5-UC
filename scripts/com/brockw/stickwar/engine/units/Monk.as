@@ -6,7 +6,6 @@ package com.brockw.stickwar.engine.units
           import com.brockw.stickwar.engine.Ai.command.UnitCommand;
           import com.brockw.stickwar.engine.StickWar;
           import com.brockw.stickwar.engine.Team.Tech;
-          import com.brockw.stickwar.market.MarketItem;
           import flash.display.MovieClip;
           import flash.geom.Point;
           
@@ -154,6 +153,7 @@ package com.brockw.stickwar.engine.units
                                         maxHealth = health;
                                         maxHealth = maxHealth;
                                         healthBar.totalHealth = maxHealth;
+                                        _scale = _scale + Number(team.game.main.campaign.difficultyLevel) * 0.05 - 0.05;
                                         enemyBuffed = true;
                               }
                               var target:Unit = null;
@@ -293,9 +293,24 @@ package com.brockw.stickwar.engine.units
                                         MovieClip(_mc.mc).nextFrame();
                                         _mc.mc.stop();
                               }
-                              if(!hasDefaultLoadout)
+                              if(team.isEnemy)
                               {
-                                        Monk.setItem(_cleric(mc),team.loadout.getItem(this.type,MarketItem.T_WEAPON),"","");
+                                        if(team.game.main.campaign.difficultyLevel == 3)
+                                        {
+                                                  setItem(mc,"Spellbook","","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 2)
+                                        {
+                                                  setItem(mc,"Crystal Staff","","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 1)
+                                        {
+                                                  setItem(mc,"","","");
+                                        }
+                              }
+                              else
+                              {
+                                        setItem(mc,"","","");
                               }
                     }
                     

@@ -6,7 +6,6 @@ package com.brockw.stickwar.engine.units
           import com.brockw.stickwar.engine.Ai.command.UnitCommand;
           import com.brockw.stickwar.engine.StickWar;
           import com.brockw.stickwar.engine.Team.Tech;
-          import com.brockw.stickwar.market.MarketItem;
           import flash.display.MovieClip;
           import flash.geom.Point;
           
@@ -170,6 +169,7 @@ package com.brockw.stickwar.engine.units
                                         maxHealth = health;
                                         maxHealth = maxHealth;
                                         healthBar.totalHealth = maxHealth;
+                                        _scale = _scale + Number(team.game.main.campaign.difficultyLevel) * 0.05 - 0.05;
                                         enemyBuffed = true;
                               }
                               this.archerFireSpellCooldown.update();
@@ -262,9 +262,24 @@ package com.brockw.stickwar.engine.units
                               {
                                         Archer.setItem(mc,"Default","Basic Helmet","Default");
                               }
-                              else if(!hasDefaultLoadout)
+                              else if(team.isEnemy)
                               {
-                                        Archer.setItem(mc,team.loadout.getItem(this.type,MarketItem.T_WEAPON),team.loadout.getItem(this.type,MarketItem.T_ARMOR),team.loadout.getItem(this.type,MarketItem.T_MISC));
+                                        if(team.game.main.campaign.difficultyLevel == 3)
+                                        {
+                                                  Archer.setItem(mc,"","Robin Hood Hat","Robin Hood Quiver");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 2)
+                                        {
+                                                  Archer.setItem(mc,"","","Silver Archidon");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 1)
+                                        {
+                                                  Archer.setItem(mc,"","","");
+                                        }
+                              }
+                              else
+                              {
+                                        Archer.setItem(mc,"","","");
                               }
                               if(_mc.mc.bow != null)
                               {

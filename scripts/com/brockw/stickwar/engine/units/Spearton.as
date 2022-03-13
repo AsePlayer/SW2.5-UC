@@ -7,7 +7,6 @@ package com.brockw.stickwar.engine.units
           import com.brockw.stickwar.engine.Entity;
           import com.brockw.stickwar.engine.StickWar;
           import com.brockw.stickwar.engine.Team.Tech;
-          import com.brockw.stickwar.market.MarketItem;
           import flash.display.MovieClip;
           
           public class Spearton extends Unit
@@ -154,6 +153,7 @@ package com.brockw.stickwar.engine.units
                                         maxHealth = health;
                                         maxHealth = maxHealth;
                                         healthBar.totalHealth = maxHealth;
+                                        _scale = _scale + Number(team.game.main.campaign.difficultyLevel) * 0.05 - 0.05;
                                         enemyBuffed = true;
                               }
                               var hit:Boolean = false;
@@ -273,9 +273,24 @@ package com.brockw.stickwar.engine.units
                               {
                                         Util.animateMovieClip(_mc);
                               }
-                              if(!hasDefaultLoadout)
+                              if(team.isEnemy)
                               {
-                                        Spearton.setItem(_speartonMc(mc),team.loadout.getItem(this.type,MarketItem.T_WEAPON),team.loadout.getItem(this.type,MarketItem.T_ARMOR),team.loadout.getItem(this.type,MarketItem.T_MISC));
+                                        if(team.game.main.campaign.difficultyLevel == 3)
+                                        {
+                                                  Spearton.setItem(_speartonMc(mc),"British Spear","British Helmet","British Shield");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 2)
+                                        {
+                                                  Spearton.setItem(_speartonMc(mc),"Nice","Medieval Helmet","Medieval Shield");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 1)
+                                        {
+                                                  Spearton.setItem(_speartonMc(mc),"","","");
+                                        }
+                              }
+                              else
+                              {
+                                        Spearton.setItem(_speartonMc(mc),"","","");
                               }
                     }
                     

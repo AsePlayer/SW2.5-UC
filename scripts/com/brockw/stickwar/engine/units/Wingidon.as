@@ -4,7 +4,6 @@ package com.brockw.stickwar.engine.units
           import com.brockw.stickwar.engine.ActionInterface;
           import com.brockw.stickwar.engine.Ai.WingidonAi;
           import com.brockw.stickwar.engine.StickWar;
-          import com.brockw.stickwar.market.MarketItem;
           import flash.display.MovieClip;
           import flash.geom.Point;
           
@@ -102,7 +101,7 @@ package com.brockw.stickwar.engine.units
                     
                     public function speedSpell() : void
                     {
-                              if(!this.wingidonSpeedSpell.spellActivate(team))
+                              if(this.wingidonSpeedSpell.spellActivate(team))
                               {
                               }
                     }
@@ -122,6 +121,7 @@ package com.brockw.stickwar.engine.units
                                         maxHealth = health;
                                         maxHealth = maxHealth;
                                         healthBar.totalHealth = maxHealth;
+                                        _scale = _scale + Number(team.game.main.campaign.difficultyLevel) * 0.05 - 0.05;
                                         enemyBuffed = true;
                               }
                               var arms:MovieClip = null;
@@ -244,9 +244,24 @@ package com.brockw.stickwar.engine.units
                                                   MovieClip(_mc.mc.quiver).gotoAndStop(1);
                                         }
                               }
-                              if(!hasDefaultLoadout)
+                              if(team.isEnemy)
                               {
-                                        Wingidon.setItem(mc,team.loadout.getItem(this.type,MarketItem.T_WEAPON),team.loadout.getItem(this.type,MarketItem.T_ARMOR),team.loadout.getItem(this.type,MarketItem.T_MISC));
+                                        if(team.game.main.campaign.difficultyLevel == 3)
+                                        {
+                                                  setItem(mc,"","Demon Mask","Demon Quiver");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 2)
+                                        {
+                                                  setItem(mc,"","Basic Helmet","Armored Sleve");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 1)
+                                        {
+                                                  setItem(mc,"","","");
+                                        }
+                              }
+                              else
+                              {
+                                        setItem(mc,"","","");
                               }
                     }
                     

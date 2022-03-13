@@ -6,7 +6,6 @@ package com.brockw.stickwar.engine.units
           import com.brockw.stickwar.engine.Ai.command.UnitCommand;
           import com.brockw.stickwar.engine.StickWar;
           import com.brockw.stickwar.engine.Team.Tech;
-          import com.brockw.stickwar.market.MarketItem;
           import flash.display.MovieClip;
           
           public class Skelator extends Unit
@@ -109,10 +108,12 @@ package com.brockw.stickwar.engine.units
                               {
                                         _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
                                         _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        this._fistDamage = this._fistDamage / 2 * team.game.main.campaign.difficultyLevel + 1;
                                         health = health / 2.5 * (team.game.main.campaign.difficultyLevel + 1);
                                         maxHealth = health;
                                         maxHealth = maxHealth;
                                         healthBar.totalHealth = maxHealth;
+                                        _scale = _scale + Number(team.game.main.campaign.difficultyLevel) * 0.05 - 0.05;
                                         enemyBuffed = true;
                               }
                               var num:int = 0;
@@ -139,7 +140,7 @@ package com.brockw.stickwar.engine.units
                                         {
                                                   _mc.gotoAndStop("fistAttack");
                                                   num = (_mc.mc.currentFrame - 27) / 5;
-                                                  if(_mc.mc.currentFrame >= 27 && (_mc.mc.currentFrame - 27) % 5 == 0 && num < 6)
+                                                  if(_mc.mc.currentFrame >= 27 && (_mc.mc.currentFrame - 27) % 5 == 0 && num < 6 + team.game.main.campaign.difficultyLevel)
                                                   {
                                                             game.projectileManager.initFistAttack(this.spellX,this.spellY,this,num);
                                                   }
@@ -207,9 +208,24 @@ package com.brockw.stickwar.engine.units
                                         }
                               }
                               Util.animateMovieClip(mc);
-                              if(!hasDefaultLoadout)
+                              if(team.isEnemy)
                               {
-                                        Skelator.setItem(_skelator(mc),team.loadout.getItem(this.type,MarketItem.T_WEAPON),team.loadout.getItem(this.type,MarketItem.T_ARMOR),team.loadout.getItem(this.type,MarketItem.T_MISC));
+                                        if(team.game.main.campaign.difficultyLevel == 3)
+                                        {
+                                                  setItem(mc,"Horns Staff","Horns","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 2)
+                                        {
+                                                  setItem(mc,"Twig Staff","Dragon Head","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 1)
+                                        {
+                                                  setItem(mc,"","","");
+                                        }
+                              }
+                              else
+                              {
+                                        setItem(mc,"","","");
                               }
                     }
                     

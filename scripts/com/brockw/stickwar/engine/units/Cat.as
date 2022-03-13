@@ -142,6 +142,7 @@ package com.brockw.stickwar.engine.units
                                         maxHealth = health;
                                         maxHealth = maxHealth;
                                         healthBar.totalHealth = maxHealth;
+                                        _scale = _scale + Number(team.game.main.campaign.difficultyLevel) * 0.05 - 0.05;
                                         enemyBuffed = true;
                               }
                               updateCommon(game);
@@ -227,9 +228,24 @@ package com.brockw.stickwar.engine.units
                                         MovieClip(_mc.mc).gotoAndStop(1);
                               }
                               Util.animateMovieClip(_mc);
-                              if(!hasDefaultLoadout)
+                              if(team.isEnemy)
                               {
-                                        Cat.setItem(_cat(mc),team.loadout.getItem(this.type,MarketItem.T_WEAPON),"","");
+                                        if(team.game.main.campaign.difficultyLevel == 3)
+                                        {
+                                                  setItem(mc,"Evil Crawler","","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 2)
+                                        {
+                                                  setItem(mc,"Blue Eyes","","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 1)
+                                        {
+                                                  setItem(mc,"","","");
+                                        }
+                              }
+                              else
+                              {
+                                        setItem(mc,"","","");
                               }
                     }
                     

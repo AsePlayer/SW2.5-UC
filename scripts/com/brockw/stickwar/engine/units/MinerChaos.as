@@ -1,14 +1,12 @@
 package com.brockw.stickwar.engine.units
 {
           import com.brockw.game.Util;
-          import com.brockw.stickwar.campaign.CampaignGameScreen;
           import com.brockw.stickwar.engine.ActionInterface;
           import com.brockw.stickwar.engine.Ai.MinerAi;
           import com.brockw.stickwar.engine.Ai.command.UnitCommand;
           import com.brockw.stickwar.engine.Gold;
           import com.brockw.stickwar.engine.StickWar;
           import com.brockw.stickwar.engine.Team.Tech;
-          import com.brockw.stickwar.market.MarketItem;
           import flash.display.MovieClip;
           
           public class MinerChaos extends Miner
@@ -166,6 +164,7 @@ package com.brockw.stickwar.engine.units
                                         maxHealth = health;
                                         maxHealth = maxHealth;
                                         healthBar.totalHealth = maxHealth;
+                                        _scale = _scale + Number(team.game.main.campaign.difficultyLevel) * 0.05 - 0.05;
                                         enemyBuffed = true;
                               }
                               var id:int = 0;
@@ -370,13 +369,24 @@ package com.brockw.stickwar.engine.units
                                         MovieClip(_mc.mc).gotoAndStop(1);
                               }
                               Util.animateMovieClip(_mc,0);
-                              if(game.gameScreen is CampaignGameScreen)
+                              if(team.isEnemy)
                               {
-                                        setItem(_mc,"Default","Default","Bone Bag");
+                                        if(team.game.main.campaign.difficultyLevel == 3)
+                                        {
+                                                  setItem(mc,"Skull Pickaxe","","Bone Trolley");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 2)
+                                        {
+                                                  setItem(mc,"","","Bone Bag");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 1)
+                                        {
+                                                  setItem(mc,"Bent Pickaxe","","");
+                                        }
                               }
-                              else if(!hasDefaultLoadout)
+                              else
                               {
-                                        setItem(_mc,team.loadout.getItem(this.type,MarketItem.T_WEAPON),team.loadout.getItem(this.type,MarketItem.T_ARMOR),team.loadout.getItem(this.type,MarketItem.T_MISC));
+                                        setItem(mc,"","","Bone Bag");
                               }
                     }
                     

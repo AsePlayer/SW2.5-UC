@@ -122,109 +122,14 @@ package com.brockw.stickwar.engine
                     
                     var leaveUCTimer:int;
                     
+                    var UCCameraTimer:int;
+                    
                     var attackTimer:int;
+                    
+                    var UCcamera:Boolean;
                     
                     public function UserInterface(main:BaseMain, gameScreen:GameScreen)
                     {
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
-                              this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
@@ -604,6 +509,10 @@ package com.brockw.stickwar.engine
                               {
                                         --this.attackTimer;
                               }
+                              if(this.UCCameraTimer > 0)
+                              {
+                                        --this.UCCameraTimer;
+                              }
                               if(this.keyBoardState.isDown(9) || this.UCunit && (this.UCunit.isDead || this.UCunit.health <= 0))
                               {
                                         if(this.leaveUCTimer <= 0)
@@ -611,8 +520,9 @@ package com.brockw.stickwar.engine
                                                   if(this.UCunit)
                                                   {
                                                             this.UCunit.isUC = false;
-                                                            if(this.UCunit.isDead)
+                                                            if((this.UCunit.isDead || this.UCunit.health <= 0) && this.keyBoardState.isDown(9))
                                                             {
+                                                                      this.UCcamera = true;
                                                                       for each(_loc5_ in this.team.units)
                                                                       {
                                                                                 if(!_loc5_.isDead && !_loc5_.health <= 0)
@@ -625,6 +535,7 @@ package com.brockw.stickwar.engine
                                                             }
                                                             else
                                                             {
+                                                                      this.UCcamera = false;
                                                                       this.UCunit = null;
                                                                       this.gameScreen.game.soundManager.playSoundFullVolume("Hellfistout3");
                                                             }
@@ -637,6 +548,7 @@ package com.brockw.stickwar.engine
                                                   else if(this.UCunit == null)
                                                   {
                                                             this.UCunit = this.selectedUnits.selected[0];
+                                                            this.UCcamera = true;
                                                             this.arrow = new tutorialArrow();
                                                             this.gameScreen.addChild(this.arrow);
                                                             trace("BRUH");
@@ -649,7 +561,22 @@ package com.brockw.stickwar.engine
                               {
                                         this.arrow.x = this.UCunit.x + this.gameScreen.game.battlefield.x;
                                         this.arrow.y = this.UCunit.y - this.UCunit.pheight * 0.8 + this.gameScreen.game.battlefield.y;
-                                        this.gameScreen.game.targetScreenX = this.UCunit.px - this.gameScreen.game.map.screenWidth / 2;
+                                        if(this.UCcamera)
+                                        {
+                                                  this.gameScreen.game.targetScreenX = this.UCunit.px - this.gameScreen.game.map.screenWidth / 2;
+                                        }
+                                        if(this.keyBoardState.isDown(82) && this.UCCameraTimer <= 0)
+                                        {
+                                                  if(this.UCcamera)
+                                                  {
+                                                            this.UCcamera = false;
+                                                  }
+                                                  else
+                                                  {
+                                                            this.UCcamera = true;
+                                                  }
+                                                  this.UCCameraTimer = 15;
+                                        }
                                         this.UCunit.isUC = true;
                                         if(this.keyBoardState.isDown(32))
                                         {
@@ -776,6 +703,7 @@ package com.brockw.stickwar.engine
                               if(this.UCunit && this.UCunit.isDead)
                               {
                                         this.UCunit.isUC = false;
+                                        this.UCcamera = false;
                                         this.UCunit = null;
                                         if(this.gameScreen.contains(this.arrow))
                                         {
@@ -1013,7 +941,7 @@ package com.brockw.stickwar.engine
                               {
                                         this.team.detectedUserInput(this);
                               }
-                              if(this.keyBoardState.isPressed(71))
+                              if(!this.keyBoardState.isPressed(71))
                               {
                               }
                               if(this.mouseState.mouseIn && this.stage.mouseY < this.gameScreen.game.battlefield.y + 240)

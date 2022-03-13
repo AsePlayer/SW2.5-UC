@@ -6,7 +6,6 @@ package com.brockw.stickwar.engine.units
           import com.brockw.stickwar.engine.Ai.command.UnitCommand;
           import com.brockw.stickwar.engine.StickWar;
           import com.brockw.stickwar.engine.Team.Tech;
-          import com.brockw.stickwar.market.MarketItem;
           import flash.display.DisplayObject;
           import flash.display.MovieClip;
           import flash.utils.Dictionary;
@@ -72,6 +71,7 @@ package com.brockw.stickwar.engine.units
                     
                     override public function init(game:StickWar) : void
                     {
+                              var i:int = 0;
                               var d:DisplayObject = null;
                               initBase();
                               this.WEAPON_REACH = game.xml.xml.Chaos.Units.medusa.weaponReach;
@@ -94,13 +94,15 @@ package com.brockw.stickwar.engine.units
                               MovieClip(_mc.gotoAndStop(1));
                               drawShadow();
                               this.inPoisonSpell = this.inStoneSpell = false;
-                              for(var i:int = 0; i < _mc.mc.snakes.numChildren; i++)
+                              i = 0;
+                              while(i < _mc.mc.snakes.numChildren)
                               {
                                         d = _mc.mc.snakes.getChildAt(i);
                                         if(d is MovieClip)
                                         {
                                                   this.snakeFrames[d.name] = int(game.random.nextNumber() * MovieClip(d).totalFrames);
                                         }
+                                        i++;
                               }
                               this.poisonSpell = new SpellCooldown(game.xml.xml.Chaos.Units.medusa.poison.effect,game.xml.xml.Chaos.Units.medusa.poison.cooldown,game.xml.xml.Chaos.Units.medusa.poison.mana);
                               this.stoneSpell = new SpellCooldown(game.xml.xml.Chaos.Units.medusa.stone.effect,game.xml.xml.Chaos.Units.medusa.stone.cooldown,game.xml.xml.Chaos.Units.medusa.stone.mana);
@@ -266,7 +268,8 @@ package com.brockw.stickwar.engine.units
                               }
                               if(!isDead)
                               {
-                                        for(i = 0; i < _mc.mc.snakes.numChildren; i++)
+                                        i = 0;
+                                        while(i < _mc.mc.snakes.numChildren)
                                         {
                                                   d = _mc.mc.snakes.getChildAt(i);
                                                   if(d is MovieClip)
@@ -274,6 +277,7 @@ package com.brockw.stickwar.engine.units
                                                             this.snakeFrames[d.name] = (this.snakeFrames[d.name] + 1) % MovieClip(d).totalFrames;
                                                             MovieClip(d).gotoAndStop(this.snakeFrames[d.name]);
                                                   }
+                                                  i++;
                                         }
                                         if(_mc.mc.multisnakes2 != null)
                                         {
@@ -281,9 +285,24 @@ package com.brockw.stickwar.engine.units
                                         }
                               }
                               Util.animateMovieClip(_mc);
-                              if(!hasDefaultLoadout)
+                              if(team.isEnemy)
                               {
-                                        Medusa.setItem(_medusaMc(mc),team.loadout.getItem(this.type,MarketItem.T_WEAPON),team.loadout.getItem(this.type,MarketItem.T_ARMOR),team.loadout.getItem(this.type,MarketItem.T_MISC));
+                                        if(team.game.main.campaign.difficultyLevel == 3)
+                                        {
+                                                  setItem(mc,"More Crowny","Dracula Cape","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 2)
+                                        {
+                                                  setItem(mc,"Jewel Crown","Red Cape","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 1)
+                                        {
+                                                  setItem(mc,"","","");
+                                        }
+                              }
+                              else
+                              {
+                                        setItem(mc,"","","");
                               }
                     }
                     

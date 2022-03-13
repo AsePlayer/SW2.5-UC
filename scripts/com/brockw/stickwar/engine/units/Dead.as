@@ -6,7 +6,6 @@ package com.brockw.stickwar.engine.units
           import com.brockw.stickwar.engine.Ai.command.UnitCommand;
           import com.brockw.stickwar.engine.StickWar;
           import com.brockw.stickwar.engine.Team.Tech;
-          import com.brockw.stickwar.market.MarketItem;
           import flash.display.MovieClip;
           import flash.geom.Point;
           
@@ -33,6 +32,8 @@ package com.brockw.stickwar.engine.units
                     private var poisonDamageAmount:Number;
                     
                     private var lastShotFrame:int;
+                    
+                    private var deezNuts:int;
                     
                     public function Dead(game:StickWar)
                     {
@@ -169,6 +170,7 @@ package com.brockw.stickwar.engine.units
                                         maxHealth = health;
                                         maxHealth = maxHealth;
                                         healthBar.totalHealth = maxHealth;
+                                        _scale = _scale + Number(team.game.main.campaign.difficultyLevel) * 0.05 - 0.05;
                                         enemyBuffed = true;
                               }
                               if(!isDieing)
@@ -276,9 +278,24 @@ package com.brockw.stickwar.engine.units
                               {
                                         Dead.setItem(mc,"Default","Wrapped Helmet","Default");
                               }
-                              else if(!hasDefaultLoadout)
+                              else if(team.isEnemy)
                               {
-                                        Dead.setItem(mc,team.loadout.getItem(this.type,MarketItem.T_WEAPON),team.loadout.getItem(this.type,MarketItem.T_ARMOR),team.loadout.getItem(this.type,MarketItem.T_MISC));
+                                        if(team.game.main.campaign.difficultyLevel == 3)
+                                        {
+                                                  setItem(mc,"","Scream Mask","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 2)
+                                        {
+                                                  setItem(mc,"","Jason Mask","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 1)
+                                        {
+                                                  setItem(mc,"","","");
+                                        }
+                              }
+                              else
+                              {
+                                        setItem(mc,"","","");
                               }
                     }
                     
@@ -287,7 +304,15 @@ package com.brockw.stickwar.engine.units
                               if(_state != S_ATTACK && game.frame - this.lastShotFrame > 45)
                               {
                                         _state = S_ATTACK;
-                                        mc.gotoAndStop("attack_1");
+                                        this.deezNuts = int(int(Math.floor(Math.random() * 2) + 1));
+                                        if(this.deezNuts == 1)
+                                        {
+                                                  mc.gotoAndStop("attack_2");
+                                        }
+                                        else
+                                        {
+                                                  mc.gotoAndStop("attack_1");
+                                        }
                                         this.target = target;
                                         hasHit = false;
                                         this.lastShotFrame = game.frame;

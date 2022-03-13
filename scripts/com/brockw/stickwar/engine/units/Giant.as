@@ -132,6 +132,7 @@ package com.brockw.stickwar.engine.units
                                         maxHealth = health;
                                         maxHealth = maxHealth;
                                         healthBar.totalHealth = maxHealth;
+                                        _scale = _scale + Number(team.game.main.campaign.difficultyLevel) * 0.05 - 0.05;
                                         enemyBuffed = true;
                               }
                               if(!this.hasGrowled)
@@ -233,9 +234,24 @@ package com.brockw.stickwar.engine.units
                               }
                               MovieClip(_mc.mc).nextFrame();
                               _mc.mc.stop();
-                              if(!hasDefaultLoadout)
+                              if(team.isEnemy)
                               {
-                                        Giant.setItem(_giant(mc),team.loadout.getItem(this.type,MarketItem.T_WEAPON),"","");
+                                        if(team.game.main.campaign.difficultyLevel == 3)
+                                        {
+                                                  setItem(mc,"Skull Mace","","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 2)
+                                        {
+                                                  setItem(mc,"Bone","","");
+                                        }
+                                        else if(team.game.main.campaign.difficultyLevel == 1)
+                                        {
+                                                  setItem(mc,"","","");
+                                        }
+                              }
+                              else
+                              {
+                                        setItem(mc,"","","");
                               }
                     }
                     
