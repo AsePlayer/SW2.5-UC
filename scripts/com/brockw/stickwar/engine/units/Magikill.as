@@ -427,7 +427,7 @@ package com.brockw.stickwar.engine.units
                               }
                               if(_state == S_RUN)
                               {
-                                        if(Math.abs(px - target.px) < WEAPON_REACH && Math.abs(py - target.py) < 40 && this.getDirection() == Util.sgn(target.px - px))
+                                        if(Math.abs(px - target.px) < WEAPON_REACH && Math.abs(py - target.py) < 40 && this.getDirection() == Util.sgn(target.px - px) && !target.isFlying)
                                         {
                                                   return true;
                                         }
@@ -444,6 +444,15 @@ package com.brockw.stickwar.engine.units
                                         this.isNuking = false;
                                         this.isPoisonDarting = false;
                               }
+                    }
+                    
+                    override public function canAttackAir() : Boolean
+                    {
+                              if(!this.notInSpell() && this.stunCooldown() == 0 || this.nukeCooldown() == 0 || this.poisonDartCooldown() == 0)
+                              {
+                                        return true;
+                              }
+                              return false;
                     }
           }
 }

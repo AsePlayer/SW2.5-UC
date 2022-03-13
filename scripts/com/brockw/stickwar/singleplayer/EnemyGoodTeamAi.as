@@ -126,7 +126,8 @@ package com.brockw.stickwar.singleplayer
                                         }
                               }
                               var _loc2_:int = 0;
-                              for(_loc3_ = 0; _loc3_ < this.buildOrder.length; _loc3_++)
+                              _loc3_ = 0;
+                              while(_loc3_ < this.buildOrder.length)
                               {
                                         _loc4_ = team.unitGroups[this.buildOrder[_loc3_]].length;
                                         if(_loc4_ >= unitComposition[this.buildOrder[_loc3_]])
@@ -137,16 +138,19 @@ package com.brockw.stickwar.singleplayer
                                         {
                                                   param1.requestToSpawn(team.id,this.buildOrder[_loc3_]);
                                         }
+                                        _loc3_++;
                               }
                               if(_loc2_ >= this.buildOrder.length)
                               {
-                                        for(_loc3_ = 0; _loc3_ < this.buildOrder.length; _loc3_++)
+                                        _loc3_ = 0;
+                                        while(_loc3_ < this.buildOrder.length)
                                         {
                                                   _loc4_ = team.unitGroups[this.buildOrder[_loc3_]].length;
                                                   if(team.unitProductionQueue[team.unitInfo[this.buildOrder[_loc3_]][2]].length == 0)
                                                   {
                                                             param1.requestToSpawn(team.id,this.buildOrder[_loc3_]);
                                                   }
+                                                  _loc3_++;
                                         }
                               }
                               if(!(this.team.game.gameScreen is CampaignGameScreen) || team.game.main.campaign.currentLevel != 0)
@@ -231,7 +235,16 @@ package com.brockw.stickwar.singleplayer
                                         target = magikill.ai.getClosestTarget();
                                         if(target)
                                         {
-                                                  if(magikill.nukeCooldown() == 0)
+                                                  if(magikill.poisonDartCooldown() == 0 && Math.abs(target.px - magikill.px) < 600)
+                                                  {
+                                                            this.poisonSpell.realX = target.px - 100;
+                                                            this.poisonSpell.realY = target.py - 10;
+                                                            if(this.poisonSpell.inRange(magikill))
+                                                            {
+                                                                      magikill.poisonDartSpell(target.px - 100,target.py - 10);
+                                                            }
+                                                  }
+                                                  else if(magikill.nukeCooldown() == 0)
                                                   {
                                                             this.nukeSpell.realX = target.px;
                                                             this.nukeSpell.realY = target.py;
@@ -247,15 +260,6 @@ package com.brockw.stickwar.singleplayer
                                                             if(this.electricWallSpell.inRange(magikill))
                                                             {
                                                                       magikill.stunSpell(target.px,target.py);
-                                                            }
-                                                  }
-                                                  else if(magikill.poisonDartCooldown() == 0)
-                                                  {
-                                                            this.poisonSpell.realX = target.px;
-                                                            this.poisonSpell.realY = target.py;
-                                                            if(this.poisonSpell.inRange(magikill))
-                                                            {
-                                                                      magikill.poisonDartSpell(target.px,target.py);
                                                             }
                                                   }
                                         }

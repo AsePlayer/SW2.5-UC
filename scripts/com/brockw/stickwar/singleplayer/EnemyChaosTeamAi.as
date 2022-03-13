@@ -116,7 +116,8 @@ package com.brockw.stickwar.singleplayer
                                         }
                               }
                               var _loc2_:int = 0;
-                              for(_loc3_ = 0; _loc3_ < this.buildOrder.length; _loc3_++)
+                              _loc3_ = 0;
+                              while(_loc3_ < this.buildOrder.length)
                               {
                                         _loc4_ = team.unitGroups[this.buildOrder[_loc3_]].length;
                                         if(!(this.buildOrder[_loc3_] == Unit.U_BOMBER && team.attackingForcePopulation < 6))
@@ -130,16 +131,19 @@ package com.brockw.stickwar.singleplayer
                                                             param1.requestToSpawn(team.id,this.buildOrder[_loc3_]);
                                                   }
                                         }
+                                        _loc3_++;
                               }
                               if(_loc2_ >= this.buildOrder.length)
                               {
-                                        for(_loc3_ = 0; _loc3_ < this.buildOrder.length; _loc3_++)
+                                        _loc3_ = 0;
+                                        while(_loc3_ < this.buildOrder.length)
                                         {
                                                   _loc4_ = team.unitGroups[this.buildOrder[_loc3_]].length;
                                                   if(team.unitProductionQueue[team.unitInfo[this.buildOrder[_loc3_]][2]].length == 0)
                                                   {
                                                             param1.requestToSpawn(team.id,this.buildOrder[_loc3_]);
                                                   }
+                                                  _loc3_++;
                                         }
                               }
                               if(!team.tech.isResearched(Tech.CASTLE_ARCHER_1))
@@ -263,16 +267,7 @@ package com.brockw.stickwar.singleplayer
                                         target = skelator.ai.getClosestTarget();
                                         if(target)
                                         {
-                                                  if(skelator.fistAttackCooldown() == 0)
-                                                  {
-                                                            this.fistAttackSpell.realX = target.px;
-                                                            this.fistAttackSpell.realY = target.py;
-                                                            if(this.fistAttackSpell.inRange(skelator))
-                                                            {
-                                                                      skelator.fistAttack(target.px,target.py);
-                                                            }
-                                                  }
-                                                  else if(skelator.reaperCooldown() == 0)
+                                                  if(skelator.reaperCooldown() == 0)
                                                   {
                                                             this.reaperSpell.targetId = target.id;
                                                             this.reaperSpell.realX = target.px;
@@ -280,6 +275,15 @@ package com.brockw.stickwar.singleplayer
                                                             if(this.reaperSpell.inRange(skelator))
                                                             {
                                                                       skelator.reaperAttack(target);
+                                                            }
+                                                  }
+                                                  else if(skelator.fistAttackCooldown() == 0)
+                                                  {
+                                                            this.fistAttackSpell.realX = target.px;
+                                                            this.fistAttackSpell.realY = target.py;
+                                                            if(this.fistAttackSpell.inRange(skelator))
+                                                            {
+                                                                      skelator.fistAttack(target.px,target.py);
                                                             }
                                                   }
                                         }

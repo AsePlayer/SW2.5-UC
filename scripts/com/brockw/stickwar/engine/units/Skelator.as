@@ -30,6 +30,8 @@ package com.brockw.stickwar.engine.units
                     
                     private var _fistDamage:Number;
                     
+                    public var attackAirForNow:Boolean;
+                    
                     public function Skelator(game:StickWar)
                     {
                               super(game);
@@ -342,9 +344,13 @@ package com.brockw.stickwar.engine.units
                               }
                               if(_state == S_RUN)
                               {
-                                        if(Math.abs(px - target.px) < this.WEAPON_REACH && Math.abs(py - target.py) < 40 && this.getDirection() == Util.sgn(target.px - px))
+                                        if(Math.abs(px - target.px) < this.WEAPON_REACH && Math.abs(py - target.py) < 40 && this.getDirection() == Util.sgn(target.px - px) && !target.isFlying)
                                         {
                                                   return true;
+                                        }
+                                        if(Math.abs(px - target.px) < this.WEAPON_REACH && Math.abs(py - target.py) < 80 && target.isFlying)
+                                        {
+                                                  return false;
                                         }
                               }
                               return false;
@@ -358,6 +364,15 @@ package com.brockw.stickwar.engine.units
                     public function set fistDamage(value:Number) : void
                     {
                               this._fistDamage = value;
+                    }
+                    
+                    override public function canAttackAir() : Boolean
+                    {
+                              if(!this.notInSpell() && this.fistAttackCooldown() == 0 || this.reaperCooldown() == 0)
+                              {
+                                        return true;
+                              }
+                              return false;
                     }
           }
 }
