@@ -594,7 +594,7 @@ package com.brockw.stickwar.campaign.controllers
                               }
                               else if(this.state == S_GOOD_LUCK)
                               {
-                                        this.message.setMessage("For a full list of commands, hit \'ESC\' or \'P\' for pause menu.","",0,"voiceTutorial21");
+                                        this.message.setMessage("User controlled units have bonus damage, speed, and regen!","",0,"");
                                         this.arrow.visible = false;
                                         CampaignGameScreen(param1).doAiUpdates = true;
                               }

@@ -152,8 +152,8 @@ package com.brockw.stickwar.engine.units
                               if(isUC)
                               {
                                         _maxVelocity = game.xml.xml.Order.Units.archer.maxVelocity * 1.25;
-                                        _damageToNotArmour = (Number(game.xml.xml.Order.Units.archer.damage) + Number(game.xml.xml.Order.Units.archer.toNotArmour)) * 1.25 * Number(team.game.main.campaign.difficultyLevel);
-                                        _damageToArmour = (Number(game.xml.xml.Order.Units.archer.damage) + Number(game.xml.xml.Order.Units.archer.toArmour)) * 1.25 * Number(team.game.main.campaign.difficultyLevel);
+                                        _damageToNotArmour = (Number(game.xml.xml.Order.Units.archer.damage) + Number(game.xml.xml.Order.Units.archer.toNotArmour)) * 1.15 * Number(team.game.main.campaign.difficultyLevel);
+                                        _damageToArmour = (Number(game.xml.xml.Order.Units.archer.damage) + Number(game.xml.xml.Order.Units.archer.toArmour)) * 1.15 * Number(team.game.main.campaign.difficultyLevel);
                               }
                               else if(!team.isEnemy)
                               {
@@ -163,8 +163,8 @@ package com.brockw.stickwar.engine.units
                               }
                               else if(team.isEnemy && !enemyBuffed && !this.isCastleArcher)
                               {
-                                        _damageToNotArmour = _damageToNotArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
-                                        _damageToArmour = _damageToArmour / 2 * team.game.main.campaign.difficultyLevel + 1;
+                                        _damageToNotArmour = _damageToNotArmour / 2.5 * team.game.main.campaign.difficultyLevel + 1;
+                                        _damageToArmour = _damageToArmour / 2.5 * team.game.main.campaign.difficultyLevel + 1;
                                         health = Number(game.xml.xml.Order.Units.archer.health) / 2.5 * (team.game.main.campaign.difficultyLevel + 1);
                                         maxHealth = health;
                                         maxHealth = maxHealth;
