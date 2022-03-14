@@ -128,8 +128,41 @@ package com.brockw.stickwar.engine
                     
                     var UCcamera:Boolean;
                     
+                    var inRange:Unit;
+                    
                     public function UserInterface(main:BaseMain, gameScreen:GameScreen)
                     {
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
@@ -476,6 +509,7 @@ package com.brockw.stickwar.engine
                     
                     public function update(param1:Event, param2:Number) : void
                     {
+                              var _loc21_:int = 0;
                               var _loc5_:Unit = null;
                               var _loc6_:Team = null;
                               var _loc7_:ScreenPositionUpdateMove = null;
@@ -593,31 +627,41 @@ package com.brockw.stickwar.engine
                                         this.UCunit.isUC = true;
                                         if(this.keyBoardState.isDown(32))
                                         {
-                                                  if(this.UCunit.type == Unit.U_MONK && this.UCunit.ai.inRange)
+                                                  if(this.UCunit.type == Unit.U_MONK)
                                                   {
-                                                            if(this.UCunit.healCooldown() == 0)
+                                                            for each(_loc5_ in this.team.poisonedUnits)
                                                             {
-                                                                      this.UCunit.healSpell(this.UCunit.ai.inRange);
-                                                                      this.UCunit.ai.inRange.heal(30,1);
+                                                                      if(this.UCunit.cureSpell(_loc5_))
+                                                                      {
+                                                                                _loc5_.cure();
+                                                                                break;
+                                                                      }
                                                             }
-                                                            if(this.UCunit.cureCooldown() == 0)
+                                                            _loc5_ = null;
+                                                            for each(_loc5_ in this.team.units)
                                                             {
-                                                                      this.UCunit.cureSpell(this.UCunit.ai.inRange);
-                                                                      this.UCunit.ai.inRange.cure();
+                                                                      if(_loc5_.health != _loc5_.maxHealth && Math.abs(this.UCunit.px - _loc5_.px) < 300)
+                                                                      {
+                                                                                if(this.inRange == null)
+                                                                                {
+                                                                                          this.inRange = _loc5_;
+                                                                                }
+                                                                                else if(_loc5_.health < this.inRange.health)
+                                                                                {
+                                                                                          this.inRange = _loc5_;
+                                                                                }
+                                                                      }
                                                             }
-                                                  }
-                                                  else if(this.UCunit.type == Unit.U_MONK)
-                                                  {
-                                                            if(this.UCunit.healCooldown() == 0)
+                                                            if(this.UCunit.healSpell(this.inRange))
                                                             {
-                                                                      this.UCunit.healSpell(this.UCunit);
+                                                                      this.inRange.heal(25,1);
+                                                                      this.UCunit.heal(5,2);
+                                                            }
+                                                            else if(this.UCunit.healSpell(this.UCunit))
+                                                            {
                                                                       this.UCunit.heal(30,1);
                                                             }
-                                                            if(this.UCunit.cureCooldown() == 0)
-                                                            {
-                                                                      this.UCunit.cureSpell(this.UCunit);
-                                                                      this.UCunit.cure();
-                                                            }
+                                                            _loc21_ = 0;
                                                   }
                                                   else if(Math.abs(this.UCunit.px - this.UCunit.ai.getClosestUnitTarget().px) > 600 && this.UCunit.type == Unit.U_ENSLAVED_GIANT)
                                                   {
@@ -954,7 +998,7 @@ package com.brockw.stickwar.engine
                               {
                                         this.team.detectedUserInput(this);
                               }
-                              if(!this.keyBoardState.isPressed(71))
+                              if(this.keyBoardState.isPressed(71))
                               {
                               }
                               if(this.mouseState.mouseIn && this.stage.mouseY < this.gameScreen.game.battlefield.y + 240)

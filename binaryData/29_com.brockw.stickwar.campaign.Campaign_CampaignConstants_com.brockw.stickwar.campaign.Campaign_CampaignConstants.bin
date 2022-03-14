@@ -2,7 +2,6 @@
 <level title="Tutorial" number="1" map="2" story="Many of the empires you previously controlled are now rebels that have fled to the outskirts of their homelands. You are faced with the threat of attack. Speartons have rebuilt and declared war against your diminished army." controller="CampaignTutorial" points="1">
 <player race="Order" statueHealth="1500" >
 <unit>Swordwrath</unit>
-
 </player>
 
 <oponent race="Order" statueHealth="400">
@@ -455,7 +454,7 @@
 <hard>1.4</hard>
 <insane>.8</insane>
 <normalHealthScale>.7</normalHealthScale>
-<tip>Tip: A clocked Shadowrath can not be targetted by the enemey.</tip>
+<tip>Tip: A cloaked Shadowrath can not be targetted by the enemy.</tip>
 
 <player race="Order" statueHealth="1500">
 <statue>swordwrath</statue>

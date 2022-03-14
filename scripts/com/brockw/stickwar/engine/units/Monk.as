@@ -43,7 +43,7 @@ package com.brockw.stickwar.engine.units
                     
                     private var _isHealToggled:Boolean;
                     
-                    private var healTarget:Unit;
+                    public var healTarget:Unit;
                     
                     public function Monk(game:StickWar)
                     {
