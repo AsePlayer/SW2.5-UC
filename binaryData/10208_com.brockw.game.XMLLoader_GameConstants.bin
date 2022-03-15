@@ -1568,18 +1568,26 @@
 </Elemental>
 
 <credits>
-Created by: Jason Whitham, Brock White and Winston Zhang.
-Directed, Animated, Written, and Balanced by: Jason Whitham (CRAZY JAY)
-Programmed by: Brock White
-Art by: Winston Zhang
+Original Game By:
+Jason Whitham (CRAZYJAY), Brock White, and Winston Zhang
 
-Special thanks for additional ideas: Sawyer Bateman
-Voice Acting by: Piotr Michael
-Music by: Symphony of Specters
-Sound Effects by: Pepper
+Stick War 2.5 By:
+Ryan Scott (AsePlayer)
 
-Thanks to Stickpage.com and the Stick Page Community!
+Credits:
+Project Manager: AsePlayer
+Game Balance: AsePlayer
+Programmer: AsePlayer
+QA Testing: Xecute and 75g
+Stick War 2.5 Logo: Xecute
 
-©Copyright Stickpage
+Special Thanks:
+Pretty Good Source Code: Brock White
+Pretty Good Modding Reference Code: AsePlayer
+Free Flash Decompiler: JPEXS (github.com/jindrapetrik/jpexs-decompiler)
+Beta Testers: Phaxtolgia, Reknel, Xecute, 75g
+
+
+The Stick War Community!
 </credits>
 </GameConstants>

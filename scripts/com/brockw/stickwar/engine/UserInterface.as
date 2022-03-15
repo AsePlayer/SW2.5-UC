@@ -169,6 +169,7 @@ package com.brockw.stickwar.engine
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
                               ++main.loadingFraction;
                               this.lastButton = null;
                               this.main = main;
@@ -583,6 +584,8 @@ package com.brockw.stickwar.engine
                                                                                           this.UCunit.ai.currentCommand = this.selectedUnits.selected[1].ai.currentCommand;
                                                                                 }
                                                                       }
+                                                                      this.UCunit.ai.mayMoveToAttack = true;
+                                                                      this.UCunit.ai.mayAttack = true;
                                                                       this.UCunit = null;
                                                                       this.gameScreen.game.soundManager.playSoundFullVolume("Hellfistout3");
                                                             }
@@ -998,7 +1001,7 @@ package com.brockw.stickwar.engine
                               {
                                         this.team.detectedUserInput(this);
                               }
-                              if(this.keyBoardState.isPressed(71))
+                              if(!this.keyBoardState.isPressed(71))
                               {
                               }
                               if(this.mouseState.mouseIn && this.stage.mouseY < this.gameScreen.game.battlefield.y + 240)

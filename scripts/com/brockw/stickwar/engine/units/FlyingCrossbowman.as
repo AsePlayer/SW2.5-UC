@@ -107,15 +107,17 @@ package com.brockw.stickwar.engine.units
                     {
                               if(isUC)
                               {
-                                        _maxVelocity = game.xml.xml.Order.Units.flyingCrossbowman.maxVelocity * 1.25;
+                                        _maxVelocity = game.xml.xml.Order.Units.flyingCrossbowman.maxVelocity * 1.15;
                                         _damageToNotArmour = (Number(game.xml.xml.Order.Units.flyingCrossbowman.damage) + Number(game.xml.xml.Order.Units.flyingCrossbowman.toNotArmour)) * 1.15 * Number(team.game.main.campaign.difficultyLevel);
                                         _damageToArmour = (Number(game.xml.xml.Order.Units.flyingCrossbowman.damage) + Number(game.xml.xml.Order.Units.flyingCrossbowman.toArmour)) * 1.15 * Number(team.game.main.campaign.difficultyLevel);
+                                        _maximumRange = Number(game.xml.xml.Order.Units.flyingCrossbowman.maximumRange) - Number(game.xml.xml.Order.Units.flyingCrossbowman.maximumRange) / 3;
                               }
                               else if(!team.isEnemy)
                               {
                                         _maxVelocity = game.xml.xml.Order.Units.flyingCrossbowman.maxVelocity;
                                         _damageToNotArmour = Number(game.xml.xml.Order.Units.flyingCrossbowman.damage) + Number(game.xml.xml.Order.Units.flyingCrossbowman.toNotArmour);
                                         _damageToArmour = Number(game.xml.xml.Order.Units.flyingCrossbowman.damage) + Number(game.xml.xml.Order.Units.flyingCrossbowman.toArmour);
+                                        _maximumRange = Number(game.xml.xml.Order.Units.flyingCrossbowman.maximumRange);
                               }
                               else if(team.isEnemy && !enemyBuffed)
                               {
@@ -184,7 +186,7 @@ package com.brockw.stickwar.engine.units
                                         }
                                         else if(_state == S_RUN)
                                         {
-                                                  if(!isFeetMoving())
+                                                  if(isFeetMoving())
                                                   {
                                                   }
                                         }
