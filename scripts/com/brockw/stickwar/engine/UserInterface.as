@@ -170,6 +170,10 @@ package com.brockw.stickwar.engine
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
                               ++main.loadingFraction;
                               this.lastButton = null;
                               this.main = main;
@@ -634,7 +638,7 @@ package com.brockw.stickwar.engine
                                                   {
                                                             for each(_loc5_ in this.team.poisonedUnits)
                                                             {
-                                                                      if(this.UCunit.cureSpell(_loc5_))
+                                                                      if(this.UCunit.cureSpell(_loc5_) && Math.abs(this.UCunit.px - _loc5_.px) < 300)
                                                                       {
                                                                                 _loc5_.cure();
                                                                                 break;
@@ -918,6 +922,141 @@ package com.brockw.stickwar.engine
                               {
                                         return;
                               }
+                              if(this.keyBoardState.isCtrl && this.keyBoardState.isPressed(49))
+                              {
+                                        if(!this.keyBoardState.isShift)
+                                        {
+                                                  this.selectedUnits.clear();
+                                        }
+                                        for each(_loc5_ in this.team.units)
+                                        {
+                                                  if(!_loc5_.isTowerSpawned && _loc5_.type == Unit.U_MINER && !_loc5_.isDead && _loc5_.isGarrisoned == false)
+                                                  {
+                                                            this.selectedUnits.add(_loc5_);
+                                                            _loc5_.selected = true;
+                                                  }
+                                        }
+                              }
+                              if(this.keyBoardState.isCtrl && this.keyBoardState.isPressed(50))
+                              {
+                                        if(!this.keyBoardState.isShift)
+                                        {
+                                                  this.selectedUnits.clear();
+                                        }
+                                        for each(_loc5_ in this.team.units)
+                                        {
+                                                  if(!_loc5_.isTowerSpawned && _loc5_.type == Unit.U_SWORDWRATH && !_loc5_.isDead && _loc5_.isGarrisoned == false)
+                                                  {
+                                                            this.selectedUnits.add(_loc5_);
+                                                            _loc5_.selected = true;
+                                                  }
+                                        }
+                              }
+                              if(this.keyBoardState.isCtrl && this.keyBoardState.isPressed(51))
+                              {
+                                        if(!this.keyBoardState.isShift)
+                                        {
+                                                  this.selectedUnits.clear();
+                                        }
+                                        for each(_loc5_ in this.team.units)
+                                        {
+                                                  if(!_loc5_.isTowerSpawned && _loc5_.type == Unit.U_ARCHER && !_loc5_.isDead && _loc5_.isGarrisoned == false)
+                                                  {
+                                                            this.selectedUnits.add(_loc5_);
+                                                            _loc5_.selected = true;
+                                                  }
+                                        }
+                              }
+                              if(this.keyBoardState.isCtrl && this.keyBoardState.isPressed(52))
+                              {
+                                        if(!this.keyBoardState.isShift)
+                                        {
+                                                  this.selectedUnits.clear();
+                                        }
+                                        for each(_loc5_ in this.team.units)
+                                        {
+                                                  if(!_loc5_.isTowerSpawned && _loc5_.type == Unit.U_MONK && !_loc5_.isDead && _loc5_.isGarrisoned == false)
+                                                  {
+                                                            this.selectedUnits.add(_loc5_);
+                                                            _loc5_.selected = true;
+                                                  }
+                                        }
+                              }
+                              if(this.keyBoardState.isCtrl && this.keyBoardState.isPressed(53))
+                              {
+                                        if(!this.keyBoardState.isShift)
+                                        {
+                                                  this.selectedUnits.clear();
+                                        }
+                                        for each(_loc5_ in this.team.units)
+                                        {
+                                                  if(!_loc5_.isTowerSpawned && _loc5_.type == Unit.U_MAGIKILL && !_loc5_.isDead)
+                                                  {
+                                                            this.selectedUnits.add(_loc5_);
+                                                            _loc5_.selected = true;
+                                                  }
+                                        }
+                              }
+                              if(this.keyBoardState.isCtrl && this.keyBoardState.isPressed(54))
+                              {
+                                        if(!this.keyBoardState.isShift)
+                                        {
+                                                  this.selectedUnits.clear();
+                                        }
+                                        for each(_loc5_ in this.team.units)
+                                        {
+                                                  if(!_loc5_.isTowerSpawned && _loc5_.type == Unit.U_SPEARTON && !_loc5_.isDead && _loc5_.isGarrisoned == false)
+                                                  {
+                                                            this.selectedUnits.add(_loc5_);
+                                                            _loc5_.selected = true;
+                                                  }
+                                        }
+                              }
+                              if(this.keyBoardState.isCtrl && this.keyBoardState.isPressed(55))
+                              {
+                                        if(!this.keyBoardState.isShift)
+                                        {
+                                                  this.selectedUnits.clear();
+                                        }
+                                        for each(_loc5_ in this.team.units)
+                                        {
+                                                  if(!_loc5_.isTowerSpawned && _loc5_.type == Unit.U_NINJA && !_loc5_.isDead && _loc5_.isGarrisoned == false)
+                                                  {
+                                                            this.selectedUnits.add(_loc5_);
+                                                            _loc5_.selected = true;
+                                                  }
+                                        }
+                              }
+                              if(this.keyBoardState.isCtrl && this.keyBoardState.isPressed(56))
+                              {
+                                        if(!this.keyBoardState.isShift)
+                                        {
+                                                  this.selectedUnits.clear();
+                                        }
+                                        for each(_loc5_ in this.team.units)
+                                        {
+                                                  if(!_loc5_.isTowerSpawned && _loc5_.type == Unit.U_FLYING_CROSSBOWMAN && !_loc5_.isDead && _loc5_.isGarrisoned == false)
+                                                  {
+                                                            this.selectedUnits.add(_loc5_);
+                                                            _loc5_.selected = true;
+                                                  }
+                                        }
+                              }
+                              if(this.keyBoardState.isCtrl && this.keyBoardState.isPressed(57))
+                              {
+                                        if(!this.keyBoardState.isShift)
+                                        {
+                                                  this.selectedUnits.clear();
+                                        }
+                                        for each(_loc5_ in this.team.units)
+                                        {
+                                                  if(!_loc5_.isTowerSpawned && _loc5_.type == Unit.U_ENSLAVED_GIANT && !_loc5_.isDead && _loc5_.isGarrisoned == false)
+                                                  {
+                                                            this.selectedUnits.add(_loc5_);
+                                                            _loc5_.selected = true;
+                                                  }
+                                        }
+                              }
                               if(!this.UCunit && this.keyBoardState.isPressed(32) || this.keyBoardState.isPressed(32) && this.UCunit && Math.abs(this.UCunit.px - this.UCunit.ai.getClosestUnitTarget().px) > 400)
                               {
                                         this.selectedUnits.clear();
@@ -936,12 +1075,12 @@ package com.brockw.stickwar.engine
                                         }
                                         this.spacePressTimer = getTimer();
                               }
-                              if(this.keyBoardState.isDown(39) && !this.UCunit)
+                              if(this.keyBoardState.isDown(39) && (!this.UCunit || !this.UCcamera))
                               {
                                         this.gameScreen.game.targetScreenX += this.SCROLL_SPEED * 1;
                                         this.isSlowCamera = false;
                               }
-                              if(this.keyBoardState.isDown(37) && !this.UCunit)
+                              if(this.keyBoardState.isDown(37) && (!this.UCunit || !this.UCcamera))
                               {
                                         this.gameScreen.game.targetScreenX -= this.SCROLL_SPEED * 1;
                                         this.isSlowCamera = false;

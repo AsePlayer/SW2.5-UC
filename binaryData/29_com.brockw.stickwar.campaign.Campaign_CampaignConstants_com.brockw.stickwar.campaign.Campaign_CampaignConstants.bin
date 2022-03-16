@@ -81,9 +81,10 @@
 <startingUnit>Miner</startingUnit>
 <startingUnit>Miner</startingUnit>
 <startingUnit>Miner</startingUnit>
+<startingUnit>Miner</startingUnit>
 <startingUnit>Swordwrath</startingUnit>
 <UnitComposition>
-<Swordwrath>4</Swordwrath>
+<Swordwrath>3</Swordwrath>
 <Ninja>15</Ninja>
 </UnitComposition>
 </oponent>

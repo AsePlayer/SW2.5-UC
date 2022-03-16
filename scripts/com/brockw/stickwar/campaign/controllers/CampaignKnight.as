@@ -36,7 +36,7 @@ package com.brockw.stickwar.campaign.controllers
                                                   this.message.scaleX *= 1.3;
                                                   this.message.scaleY *= 1.3;
                                                   gameScreen.addChild(this.message);
-                                                  this.message.setMessage("Press SPACE to select all of your attacking units","");
+                                                  this.message.setMessage("Press CTRL and 1-9 to select all of one type of your ungarrisoned units","");
                                                   this.frames = 0;
                                         }
                               }

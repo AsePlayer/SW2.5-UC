@@ -59,7 +59,7 @@ package com.brockw.stickwar.campaign.controllers
                                                   this.message.scaleX *= 0.9;
                                                   this.message.scaleY *= 0.9;
                                                   this.message.visible = false;
-                                                  this.message.setMessage("Some of these commands will not work while in user control","");
+                                                  this.message.setMessage("Some of these commands will not work while in user control, so be careful!","");
                                                   gameScreen.addChild(this.message);
                                                   this.frames = 0;
                                                   this.arrow = new tutorialArrow();

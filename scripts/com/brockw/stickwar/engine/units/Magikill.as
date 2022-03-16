@@ -427,7 +427,7 @@ package com.brockw.stickwar.engine.units
                               }
                               if(_state == S_RUN)
                               {
-                                        if(Math.abs(px - target.px) < WEAPON_REACH && Math.abs(py - target.py) < 40 && this.getDirection() == Util.sgn(target.px - px) && !target.isFlying)
+                                        if(Math.abs(px - target.px) < WEAPON_REACH && Math.abs(py - target.py) < 40 && this.getDirection() == Util.sgn(target.px - px) && !target.isFlying())
                                         {
                                                   return true;
                                         }

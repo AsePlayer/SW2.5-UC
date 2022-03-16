@@ -345,7 +345,7 @@ package com.brockw.stickwar.campaign.controllers
                                         {
                                                   _loc6_.health = _loc6_.maxHealth;
                                         }
-                                        this.message.setMessage("Press SPACE near an enemy unit to attack with user control.","Step #4",0,"voiceTutorial4",true);
+                                        this.message.setMessage("Press R once more to re-lock the camera. Press SPACE to attack a nearby unit with user control.","Step #4",0,"",true);
                                         this.arrow.visible = true;
                                         this.arrow.x = this.o1.x + param1.game.battlefield.x;
                                         this.arrow.y = this.o1.y - this.o1.pheight * 0.8 + param1.game.battlefield.y;
@@ -639,17 +639,44 @@ package com.brockw.stickwar.campaign.controllers
                               }
                               else if(this.state == S_MOVE_UNITS)
                               {
+                                        if(this.s1.isUC || this.s2.isUC)
+                                        {
+                                                  _loc7_ = new UnitMove();
+                                                  _loc7_.owner = param1.game.team.id;
+                                                  _loc7_.arg0 = 2350 + param1.game.battlefield.x;
+                                                  _loc7_.arg1 = 100 + param1.game.battlefield.y;
+                                                  if(this.s1.px < 2375 && !this.s1.isUC || this.s2.px < 2375 && !this.s2.isUC)
+                                                  {
+                                                            _loc7_.moveType = UnitCommand.HOLD;
+                                                  }
+                                                  else
+                                                  {
+                                                            _loc7_.moveType = UnitCommand.MOVE;
+                                                  }
+                                                  if(this.s1.isUC)
+                                                  {
+                                                            _loc7_.units.push(this.s2.id);
+                                                  }
+                                                  else if(this.s2.isUC)
+                                                  {
+                                                            _loc7_.units.push(this.s1.id);
+                                                  }
+                                                  _loc7_.execute(param1.game);
+                                        }
+                                        else if(!this.s1.isUC && !this.s2.isUC)
+                                        {
+                                                  _loc7_ = new UnitMove();
+                                                  _loc7_.owner = param1.game.team.id;
+                                                  _loc7_.arg0 = 2350 + param1.game.battlefield.x;
+                                                  _loc7_.arg1 = 100 + param1.game.battlefield.y;
+                                                  _loc7_.moveType = UnitCommand.HOLD;
+                                                  _loc7_.units.push(this.s2.id);
+                                                  _loc7_.units.push(this.s1.id);
+                                                  _loc7_.execute(param1.game);
+                                        }
                                         if(this.message.hasFinishedPlayingSound() && (this.s1.isUC && this.s1.px < 2500 && this.s2.px < 2500 || this.s2.isUC && this.s1.px < 2500 && this.s2.px < 2500))
                                         {
                                                   this.state = S_MOVE_SCREEN;
-                                                  _loc7_ = new UnitMove();
-                                                  _loc7_.owner = param1.game.team.id;
-                                                  _loc7_.moveType = UnitCommand.HOLD;
-                                                  _loc7_.arg0 = param1.game.team.homeX + -1000;
-                                                  _loc7_.arg1 = param1.game.map.height / 2;
-                                                  _loc7_.units.push(this.s1.id);
-                                                  _loc7_.units.push(this.s2.id);
-                                                  _loc7_.execute(param1.game);
                                                   this.o1 = Swordwrath(param1.game.unitFactory.getUnit(Unit.U_SWORDWRATH));
                                                   param1.team.enemyTeam.spawn(this.o1,param1.game);
                                                   this.o1.x = this.o1.px = 3350;

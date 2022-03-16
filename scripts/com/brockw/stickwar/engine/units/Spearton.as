@@ -138,12 +138,14 @@ package com.brockw.stickwar.engine.units
                                         _maxVelocity = game.xml.xml.Order.Units.spearton.maxVelocity * 1.25;
                                         _damageToNotArmour = (Number(game.xml.xml.Order.Units.spearton.damage) + Number(game.xml.xml.Order.Units.spearton.toNotArmour)) * 1.25 * Number(team.game.main.campaign.difficultyLevel);
                                         _damageToArmour = (Number(game.xml.xml.Order.Units.spearton.damage) + Number(game.xml.xml.Order.Units.spearton.toArmour)) * 1.25 * Number(team.game.main.campaign.difficultyLevel);
+                                        _mass = Number(game.xml.xml.Order.Units.spearton.mass) / 1.15;
                               }
                               else if(!team.isEnemy)
                               {
                                         _maxVelocity = game.xml.xml.Order.Units.spearton.maxVelocity;
                                         _damageToNotArmour = Number(game.xml.xml.Order.Units.spearton.damage) + Number(game.xml.xml.Order.Units.spearton.toNotArmour);
                                         _damageToArmour = Number(game.xml.xml.Order.Units.spearton.damage) + Number(game.xml.xml.Order.Units.spearton.toArmour);
+                                        _mass = game.xml.xml.Order.Units.spearton.mass;
                               }
                               else if(team.isEnemy && !enemyBuffed)
                               {

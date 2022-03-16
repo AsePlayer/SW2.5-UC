@@ -1,7 +1,7 @@
 package com.brockw.game
 {
           import flash.display.Stage;
-          import flash.events.*;
+          import flash.events.KeyboardEvent;
           
           public class KeyboardState
           {
@@ -15,24 +15,39 @@ package com.brockw.game
                     
                     private var _isShift:Boolean;
                     
+                    private var _isCtrl:Boolean;
+                    
                     private var _target:Stage;
                     
                     private var _isDisabled:Boolean;
                     
-                    public function KeyboardState(target:Stage)
+                    public function KeyboardState(param1:Stage)
                     {
                               super();
                               this._isDisabled = false;
-                              this._target = target;
+                              this._target = param1;
                               this.keysVector = new Vector.<Boolean>(255,false);
                               this.pressedVector = new Vector.<Boolean>(255,false);
                               this.downVector = new Vector.<Boolean>(255,false);
-                              for(var i:int = 0; i < 256; i++)
+                              var _loc2_:int = 0;
+                              while(_loc2_ < 256)
                               {
-                                        this.keysVector[i] = this.pressedVector[i] = this.downVector[i] = false;
+                                        this.keysVector[_loc2_] = this.pressedVector[_loc2_] = this.downVector[_loc2_] = false;
+                                        _loc2_++;
                               }
-                              target.addEventListener(KeyboardEvent.KEY_DOWN,this.keyDown);
-                              target.addEventListener(KeyboardEvent.KEY_UP,this.keyUp);
+                              param1.addEventListener(KeyboardEvent.KEY_DOWN,this.keyDown);
+                              param1.addEventListener(KeyboardEvent.KEY_UP,this.keyUp);
+                              this._isCtrl = this._isShift = false;
+                    }
+                    
+                    public function get isCtrl() : Boolean
+                    {
+                              return this._isCtrl;
+                    }
+                    
+                    public function set isCtrl(param1:Boolean) : void
+                    {
+                              this._isCtrl = param1;
                     }
                     
                     public function cleanUp() : void
@@ -41,53 +56,55 @@ package com.brockw.game
                               this._target.removeEventListener(KeyboardEvent.KEY_UP,this.keyUp);
                     }
                     
-                    public function isDown(key:int) : Boolean
+                    public function isDown(param1:int) : Boolean
                     {
-                              return this.keysVector[key];
+                              return this.keysVector[param1];
                     }
                     
-                    public function isPressed(key:int) : Boolean
+                    public function isPressed(param1:int) : Boolean
                     {
                               if(this._isDisabled)
                               {
                                         return false;
                               }
-                              var b:Boolean = this.pressedVector[key];
-                              this.pressedVector[key] = false;
-                              return b;
+                              var _loc2_:Boolean = this.pressedVector[param1];
+                              this.pressedVector[param1] = false;
+                              return _loc2_;
                     }
                     
-                    public function isDownForAction(key:int) : Boolean
+                    public function isDownForAction(param1:int) : Boolean
                     {
                               if(this._isDisabled)
                               {
                                         return false;
                               }
-                              if(this.downVector[key])
+                              if(this.downVector[param1])
                               {
-                                        this.downVector[key] = false;
+                                        this.downVector[param1] = false;
                                         return true;
                               }
                               return false;
                     }
                     
-                    private function keyUp(evt:KeyboardEvent) : void
+                    private function keyUp(param1:KeyboardEvent) : void
                     {
-                              this._isShift = evt.shiftKey;
-                              this.keysVector[evt.keyCode] = false;
-                              this.pressedVector[evt.keyCode] = false;
-                              this.downVector[evt.keyCode] = false;
+                              this._isShift = param1.shiftKey;
+                              this._isCtrl = param1.ctrlKey;
+                              this.keysVector[param1.keyCode] = false;
+                              this.pressedVector[param1.keyCode] = false;
+                              this.downVector[param1.keyCode] = false;
                     }
                     
-                    private function keyDown(evt:KeyboardEvent) : void
+                    private function keyDown(param1:KeyboardEvent) : void
                     {
-                              if(this.keysVector[evt.keyCode] == false)
+                              if(this.keysVector[param1.keyCode] == false)
                               {
-                                        this.pressedVector[evt.keyCode] = true;
-                                        this.downVector[evt.keyCode] = true;
+                                        this.pressedVector[param1.keyCode] = true;
+                                        this.downVector[param1.keyCode] = true;
                               }
-                              this._isShift = evt.shiftKey;
-                              this.keysVector[evt.keyCode] = true;
+                              this._isCtrl = param1.ctrlKey;
+                              this._isShift = param1.shiftKey;
+                              this.keysVector[param1.keyCode] = true;
                     }
                     
                     public function get isShift() : Boolean
@@ -95,9 +112,9 @@ package com.brockw.game
                               return this._isShift;
                     }
                     
-                    public function set isShift(value:Boolean) : void
+                    public function set isShift(param1:Boolean) : void
                     {
-                              this._isShift = value;
+                              this._isShift = param1;
                     }
                     
                     public function get isDisabled() : Boolean
@@ -105,9 +122,9 @@ package com.brockw.game
                               return this._isDisabled;
                     }
                     
-                    public function set isDisabled(value:Boolean) : void
+                    public function set isDisabled(param1:Boolean) : void
                     {
-                              this._isDisabled = value;
+                              this._isDisabled = param1;
                     }
           }
 }

@@ -187,14 +187,6 @@ package com.brockw.stickwar.engine.units
                                                             {
                                                                       _loc3_ = angleToTargetW(this.target,projectileVelocity,angleToTarget(this.target));
                                                             }
-                                                            if(isUC)
-                                                            {
-                                                                      this.damageToDeal = 1.5 * 150;
-                                                            }
-                                                            else
-                                                            {
-                                                                      this.damageToDeal = 150;
-                                                            }
                                                             if(mc.scaleX < 0)
                                                             {
                                                                       param1.projectileManager.initBoulder(_loc2_.x,_loc2_.y,180 - bowAngle,projectileVelocity,0,_loc3_,this,damageToDeal,false);
