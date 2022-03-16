@@ -291,13 +291,6 @@ package com.brockw.stickwar.campaign.controllers
                                         {
                                                   param1.removeChild(this.skipTutorialButton);
                                         }
-                                        if(this.s1.selected == false)
-                                        {
-                                                  param1.userInterface.selectedUnits.add(this.s1);
-                                                  param1.userInterface.selectedUnits.add(this.s2);
-                                                  this.s1.selected = true;
-                                                  this.s2.selected = true;
-                                        }
                                         this.message.setMessage("Press TAB to user control a selected unit. Move that unit with WASD or the arrow keys.","Step #2",0,"voiceTutorial2");
                                         param1.game.screenX = 2200;
                                         param1.game.targetScreenX = 2200;
@@ -359,7 +352,7 @@ package com.brockw.stickwar.campaign.controllers
                                                   this.s1.selected = false;
                                                   this.s2.selected = false;
                                         }
-                                        this.message.setMessage("Click down here on the mini map to quickly navigate back to you castle.","Step #5",0,"voiceTutorial5",true);
+                                        this.message.setMessage("Click down here on the mini map to quickly navigate back to your castle.","Step #5",0,"voiceTutorial5",true);
                                         this.arrow.visible = true;
                                         this.arrow.x = param1.game.stage.stageWidth / 2 - 90;
                                         this.arrow.y = param1.game.stage.stageHeight - 115;
@@ -676,6 +669,14 @@ package com.brockw.stickwar.campaign.controllers
                                         }
                                         if(this.message.hasFinishedPlayingSound() && (this.s1.isUC && this.s1.px < 2500 && this.s2.px < 2500 || this.s2.isUC && this.s1.px < 2500 && this.s2.px < 2500))
                                         {
+                                                  _loc7_ = new UnitMove();
+                                                  _loc7_.owner = param1.game.team.id;
+                                                  _loc7_.arg0 = 2350 + param1.game.battlefield.x;
+                                                  _loc7_.arg1 = 100 + param1.game.battlefield.y;
+                                                  _loc7_.moveType = UnitCommand.HOLD;
+                                                  _loc7_.units.push(this.s2.id);
+                                                  _loc7_.units.push(this.s1.id);
+                                                  _loc7_.execute(param1.game);
                                                   this.state = S_MOVE_SCREEN;
                                                   this.o1 = Swordwrath(param1.game.unitFactory.getUnit(Unit.U_SWORDWRATH));
                                                   param1.team.enemyTeam.spawn(this.o1,param1.game);
