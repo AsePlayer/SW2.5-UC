@@ -278,12 +278,6 @@ package com.brockw.stickwar.campaign.controllers
                                         this.arrow.x = this.s1.x + param1.game.battlefield.x;
                                         this.arrow.y = this.s1.y - this.s1.pheight * 0.8 + param1.game.battlefield.y;
                                         this.message.setMessage("Left click and drag a box over units to select them.","Step #1",0,"voiceTutorial1",true);
-                                        if(!param1.contains(this.skipTutorialButton) && (param1.main.campaign.difficultyLevel != Campaign.D_NORMAL || param1.main.campaign.getCurrentLevel().retries > 0))
-                                        {
-                                                  param1.addChild(this.skipTutorialButton);
-                                                  this.skipTutorialButton.x = param1.game.map.screenWidth / 2 + 17;
-                                                  this.skipTutorialButton.y = this.message.y + this.message.height - 140;
-                                        }
                               }
                               else if(this.state == S_MOVE_UNITS)
                               {
@@ -291,7 +285,7 @@ package com.brockw.stickwar.campaign.controllers
                                         {
                                                   param1.removeChild(this.skipTutorialButton);
                                         }
-                                        this.message.setMessage("Press TAB to user control a selected unit. Move that unit with WASD or the arrow keys.","Step #2",0,"voiceTutorial2");
+                                        this.message.setMessage("Press TAB to user control a selected unit. Move that unit with WASD or the arrow keys.","Step #2",0,"");
                                         param1.game.screenX = 2200;
                                         param1.game.targetScreenX = 2200;
                                         this.arrow.visible = true;
@@ -387,6 +381,12 @@ package com.brockw.stickwar.campaign.controllers
                                         _loc7_.units.push(this.s1.id);
                                         _loc7_.units.push(this.s2.id);
                                         _loc7_.execute(param1.game);
+                                        if(!param1.contains(this.skipTutorialButton) && (param1.main.campaign.difficultyLevel != Campaign.D_NORMAL || param1.main.campaign.getCurrentLevel().retries > 0))
+                                        {
+                                                  param1.addChild(this.skipTutorialButton);
+                                                  this.skipTutorialButton.x = param1.game.map.screenWidth / 2 + 17;
+                                                  this.skipTutorialButton.y = this.message.y + this.message.height - 140;
+                                        }
                               }
                               else if(this.state == S_PRAY)
                               {
@@ -587,7 +587,7 @@ package com.brockw.stickwar.campaign.controllers
                               }
                               else if(this.state == S_GOOD_LUCK)
                               {
-                                        this.message.setMessage("User controlled units have bonus damage, speed, and regen!","",0,"");
+                                        this.message.setMessage("User controlled units become stronger and regenerate health!","",0,"");
                                         this.arrow.visible = false;
                                         CampaignGameScreen(param1).doAiUpdates = true;
                               }
@@ -660,9 +660,7 @@ package com.brockw.stickwar.campaign.controllers
                                         {
                                                   _loc7_ = new UnitMove();
                                                   _loc7_.owner = param1.game.team.id;
-                                                  _loc7_.arg0 = 2350 + param1.game.battlefield.x;
-                                                  _loc7_.arg1 = 100 + param1.game.battlefield.y;
-                                                  _loc7_.moveType = UnitCommand.HOLD;
+                                                  _loc7_.moveType = UnitCommand.STAND;
                                                   _loc7_.units.push(this.s2.id);
                                                   _loc7_.units.push(this.s1.id);
                                                   _loc7_.execute(param1.game);
