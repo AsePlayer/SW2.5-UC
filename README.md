@@ -21,3 +21,5 @@ WASD/arrow keys - User Control movement
 spacebar - User Control attack
 
 R - Disable User Control camera lock-on
+
+ctrl + # - Select all of a certain unit
