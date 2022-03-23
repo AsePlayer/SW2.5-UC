@@ -423,7 +423,7 @@ package com.brockw.stickwar.engine
                                                                                           }
                                                                                           _loc6_++;
                                                                                 }
-                                                                                if((_loc11_.hotKey == 83 || _loc11_.hotKey == 87 || _loc11_.hotKey == 65) && param1.game.gameScreen.userInterface.UCunit)
+                                                                                if((param1.game.gameScreen.userInterface.keyBoardState.isDown(83) && _loc11_.hotKey == 83 || param1.game.gameScreen.userInterface.keyBoardState.isDown(87) && _loc11_.hotKey == 87 || param1.game.gameScreen.userInterface.keyBoardState.isDown(65) && _loc11_.hotKey == 65) && !param1.game.gameScreen.userInterface.keyBoardState.isShift && param1.game.gameScreen.userInterface.UCunit)
                                                                                 {
                                                                                           trace("no no no!");
                                                                                 }

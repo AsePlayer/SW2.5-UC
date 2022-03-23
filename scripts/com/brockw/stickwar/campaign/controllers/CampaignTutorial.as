@@ -285,7 +285,7 @@ package com.brockw.stickwar.campaign.controllers
                                         {
                                                   param1.removeChild(this.skipTutorialButton);
                                         }
-                                        this.message.setMessage("Press TAB to user control a selected unit. Move that unit with WASD or the arrow keys.","Step #2",0,"");
+                                        this.message.setMessage("Press F to user control a selected unit. Move that unit with WASD or the arrow keys.","Step #2",0,"");
                                         param1.game.screenX = 2200;
                                         param1.game.targetScreenX = 2200;
                                         this.arrow.visible = true;
@@ -900,7 +900,7 @@ package com.brockw.stickwar.campaign.controllers
                                                   this.miniMessage.scaleX *= 0.8;
                                                   this.miniMessage.scaleY *= 0.8;
                                                   param1.addChild(this.miniMessage);
-                                                  this.miniMessage.setMessage("When you\'re ready, click here to Attack the enemy!","",525);
+                                                  this.miniMessage.setMessage("When you\'re ready, click here to Attack the enemy! In the meantime, press TAB to toggle fast forward!","",525);
                                                   this.miniMessage.visible = false;
                                                   this.arrow.x = param1.game.stage.stageWidth / 2 + 90;
                                                   this.arrow.y = param1.game.stage.stageHeight - 75;

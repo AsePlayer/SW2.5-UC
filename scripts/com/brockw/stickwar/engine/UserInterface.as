@@ -174,6 +174,7 @@ package com.brockw.stickwar.engine
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
                               this._period = 33.333333333333336;
+                              this._period = 33.333333333333336;
                               ++main.loadingFraction;
                               this.lastButton = null;
                               this.main = main;
@@ -531,6 +532,17 @@ package com.brockw.stickwar.engine
                               var _loc18_:int = 0;
                               var _loc19_:int = 0;
                               var _loc20_:UnitMove = null;
+                              if(this.keyBoardState.isPressed(9))
+                              {
+                                        if(!this.gameScreen.isFastForward && this.hud.hud.fastForward.visible)
+                                        {
+                                                  this.gameScreen.isFastForward = true;
+                                        }
+                                        else
+                                        {
+                                                  this.gameScreen.isFastForward = false;
+                                        }
+                              }
                               if(this.arrow != null)
                               {
                                         if(this.arrow.currentFrame == this.arrow.totalFrames)
@@ -554,14 +566,14 @@ package com.brockw.stickwar.engine
                               {
                                         --this.UCCameraTimer;
                               }
-                              if(this.keyBoardState.isDown(9) || this.UCunit && (this.UCunit.isDead || this.UCunit.health <= 0))
+                              if(this.keyBoardState.isDown(70) || this.UCunit && (this.UCunit.isDead || this.UCunit.health <= 0))
                               {
                                         if(this.leaveUCTimer <= 0)
                                         {
                                                   if(this.UCunit)
                                                   {
                                                             this.UCunit.isUC = false;
-                                                            if((this.UCunit.isDead || this.UCunit.health <= 0) && this.keyBoardState.isDown(9))
+                                                            if((this.UCunit.isDead || this.UCunit.health <= 0) && this.keyBoardState.isDown(70))
                                                             {
                                                                       this.UCcamera = true;
                                                                       for each(_loc5_ in this.team.units)
@@ -1140,7 +1152,7 @@ package com.brockw.stickwar.engine
                               {
                                         this.team.detectedUserInput(this);
                               }
-                              if(!this.keyBoardState.isPressed(71))
+                              if(this.keyBoardState.isPressed(71))
                               {
                               }
                               if(this.mouseState.mouseIn && this.stage.mouseY < this.gameScreen.game.battlefield.y + 240)
