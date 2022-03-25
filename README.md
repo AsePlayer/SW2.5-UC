@@ -1,5 +1,5 @@
 # SW2.5-UC
-Welcome to the Stick War 2.5: User Control Mod made by AsePlayer!
+Welcome to the Stick War 2.5: User Control mod, made by AsePlayer!
 
 This mod features everyone's favorite classic mechanic from Stick War, the ability to completely control one overpowered unit, reimagined in Stick War 2! 
 
