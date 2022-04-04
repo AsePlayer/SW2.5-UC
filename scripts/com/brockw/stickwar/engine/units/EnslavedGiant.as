@@ -90,12 +90,14 @@ package com.brockw.stickwar.engine.units
                                         _maxVelocity = 3 * 1.25;
                                         _damageToNotArmour = (40 + 0) * 0.75 * Number(team.game.main.campaign.difficultyLevel);
                                         _damageToArmour = (40 + 30) * 0.75 * Number(team.game.main.campaign.difficultyLevel);
+                                        _mass = 1500 / 1.1;
                               }
                               else if(!team.isEnemy)
                               {
                                         _maxVelocity = 3;
                                         _damageToNotArmour = 40 + 0;
                                         _damageToArmour = 40 + 30;
+                                        _mass = 1500;
                               }
                               else if(team.isEnemy && !enemyBuffed)
                               {

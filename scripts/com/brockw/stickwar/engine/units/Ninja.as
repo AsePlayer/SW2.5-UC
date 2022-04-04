@@ -247,6 +247,7 @@ package com.brockw.stickwar.engine.units
                                         _maxVelocity = game.xml.xml.Order.Units.ninja.maxVelocity * 1.25;
                                         _damageToNotArmour = (Number(game.xml.xml.Order.Units.ninja.damage) + Number(game.xml.xml.Order.Units.ninja.toNotArmour)) * 1.25 * Number(team.game.main.campaign.difficultyLevel);
                                         _damageToArmour = (Number(game.xml.xml.Order.Units.ninja.damage) + Number(game.xml.xml.Order.Units.ninja.toArmour)) * 1.25 * Number(team.game.main.campaign.difficultyLevel);
+                                        _mass = Number(game.xml.xml.Order.Units.ninja.mass) / 1.1;
                               }
                               else if(!team.isEnemy)
                               {
@@ -255,6 +256,7 @@ package com.brockw.stickwar.engine.units
                                         _maxVelocity = game.xml.xml.Order.Units.ninja.maxVelocity;
                                         _damageToNotArmour = Number(game.xml.xml.Order.Units.ninja.damage) + Number(game.xml.xml.Order.Units.ninja.toNotArmour);
                                         _damageToArmour = Number(game.xml.xml.Order.Units.ninja.damage) + Number(game.xml.xml.Order.Units.ninja.toArmour);
+                                        _mass = Number(game.xml.xml.Order.Units.ninja.mass);
                               }
                               else if(team.isEnemy && !enemyBuffed)
                               {

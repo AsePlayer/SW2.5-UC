@@ -318,10 +318,10 @@ package com.brockw.stickwar.engine.units
                     
                     public function enableSuperMedusa() : void
                     {
-                              this.health = this.maxHealth = team.game.xml.xml.Chaos.Units.medusa.superHealth;
-                              this.scale = team.game.xml.xml.Chaos.Units.medusa.superScale;
-                              _damageToArmour = team.game.xml.xml.Chaos.Units.medusa.superDamage;
-                              _damageToNotArmour = team.game.xml.xml.Chaos.Units.medusa.superDamage;
+                              this.health = this.maxHealth = team.game.xml.xml.Chaos.Units.medusa.superHealth / 2 * team.game.main.campaign.difficultyLevel + 1;
+                              this.scale = Number(team.game.xml.xml.Chaos.Units.medusa.superScale) + Number(team.game.main.campaign.difficultyLevel) * 0.25;
+                              _damageToArmour = team.game.xml.xml.Chaos.Units.medusa.superDamage / 2 * team.game.main.campaign.difficultyLevel + 1;
+                              _damageToNotArmour = team.game.xml.xml.Chaos.Units.medusa.superDamage / 2 * team.game.main.campaign.difficultyLevel + 1;
                               this.stoneSpell = new SpellCooldown(team.game.xml.xml.Chaos.Units.medusa.stone.effect,team.game.xml.xml.Chaos.Units.medusa.stone.superCooldown,team.game.xml.xml.Chaos.Units.medusa.stone.mana);
                               maxHealth = this.maxHealth;
                               healthBar.totalHealth = maxHealth;
