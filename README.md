@@ -26,3 +26,9 @@ CTRL + # - Select all of a certain unit
 Hold SHIFT - Use the WASD hotkeys in User Control
 
 TAB - Toggle fast forward
+
+
+# How To Play:
+Download Adobe Flash Projector! [flashplayer_32_sa.zip](https://github.com/AsePlayer/SW2.5-UC/files/8457530/flashplayer_32_sa.zip)
+
+Download the Stick War 2.5: User Control Mod .swf file and open it with the Flash Projector!
